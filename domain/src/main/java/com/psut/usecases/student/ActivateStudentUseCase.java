@@ -1,4 +1,4 @@
-package com.psut.usecases.students;
+package com.psut.usecases.student;
 
 import com.psut.exceptions.TechnicalValidationException;
 import com.psut.models.shared.UserStatus;

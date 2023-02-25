@@ -3,10 +3,11 @@ package com.psut.controllers;
 import com.psut.models.student.Student;
 import com.psut.models.student.UpdateStudentRequest;
 import com.psut.repositories.StudentRepository;
-import com.psut.usecases.students.ActivateStudentUseCase;
-import com.psut.usecases.students.CreateStudentUseCase;
-import com.psut.usecases.students.DeactivateStudentUseCase;
-import com.psut.usecases.students.UpdateStudentUseCase;
+import com.psut.repositories.specifications.StudentSpecifications;
+import com.psut.usecases.student.ActivateStudentUseCase;
+import com.psut.usecases.student.CreateStudentUseCase;
+import com.psut.usecases.student.DeactivateStudentUseCase;
+import com.psut.usecases.student.UpdateStudentUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +27,8 @@ public class StudentsController {
     private final ActivateStudentUseCase activateStudentUseCase;
 
     @GetMapping
-    public List<Student> listStudents() {
-        return studentRepository.findAll();
+    public List<Student> listStudents(StudentSpecifications specifications) {
+        return studentRepository.findAll(specifications);
     }
 
     @PostMapping

@@ -1,4 +1,4 @@
-package com.psut.usecases.students;
+package com.psut.usecases.student;
 
 import com.psut.models.student.Student;
 import com.psut.models.student.UpdateStudentRequest;

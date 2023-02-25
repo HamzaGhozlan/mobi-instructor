@@ -4,8 +4,10 @@ import com.psut.models.student.Student;
 
 import java.util.List;
 
-public interface StudentRepository {
+public interface StudentRepository<Specifications> {
     Student save(Student student);
+
     Student findById(Long id);
-    List<Student> findAll();
+
+    List<Student> findAll(Specifications specifications);
 }

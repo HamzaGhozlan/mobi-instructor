@@ -6,6 +6,7 @@ import com.psut.repositories.StudentRepository;
 import com.psut.repositories.entities.StudentEntity;
 import com.psut.repositories.mappers.StudentMapper;
 import com.psut.exceptions.RecordNotFoundException;
+import com.psut.repositories.specifications.StudentSpecifications;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class StudentRepositoryAdapter implements StudentRepository {
+public class StudentRepositoryAdapter implements StudentRepository<StudentSpecifications> {
     private final JpaStudentRepository jpaRepository;
     private final StudentMapper mapper;
 
@@ -30,8 +31,8 @@ public class StudentRepositoryAdapter implements StudentRepository {
         return mapper.toDomain(studentEntity);
     }
 
-    public List<Student> findAll() {
-        return jpaRepository.findAll()
+    public List<Student> findAll(StudentSpecifications specifications) {
+        return jpaRepository.findAll(specifications)
                 .stream()
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());

@@ -1,10 +1,10 @@
 package com.psut.configs;
 
 import com.psut.repositories.StudentRepository;
-import com.psut.usecases.students.ActivateStudentUseCase;
-import com.psut.usecases.students.CreateStudentUseCase;
-import com.psut.usecases.students.DeactivateStudentUseCase;
-import com.psut.usecases.students.UpdateStudentUseCase;
+import com.psut.usecases.student.ActivateStudentUseCase;
+import com.psut.usecases.student.CreateStudentUseCase;
+import com.psut.usecases.student.DeactivateStudentUseCase;
+import com.psut.usecases.student.UpdateStudentUseCase;
 import com.psut.validators.PasswordValidator;
 import com.psut.validators.StudentValidator;
 import com.psut.validators.UsernameValidator;
