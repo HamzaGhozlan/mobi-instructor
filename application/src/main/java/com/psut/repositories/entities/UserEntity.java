@@ -1,6 +1,7 @@
 package com.psut.repositories.entities;
 
 import com.psut.models.shared.Gender;
+import com.psut.models.shared.UserStatus;
 import jakarta.persistence.*;
 
 
@@ -17,4 +18,5 @@ public abstract class UserEntity {
     private Gender gender;
     private String username;
     private String password;
+    private UserStatus status;
 }

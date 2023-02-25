@@ -1,7 +1,9 @@
 package com.psut.configs;
 
 import com.psut.repositories.StudentRepository;
+import com.psut.usecases.students.ActivateStudentUseCase;
 import com.psut.usecases.students.CreateStudentUseCase;
+import com.psut.usecases.students.DeactivateStudentUseCase;
 import com.psut.usecases.students.UpdateStudentUseCase;
 import com.psut.validators.PasswordValidator;
 import com.psut.validators.StudentValidator;
@@ -21,6 +23,16 @@ public class Configurations {
     public UpdateStudentUseCase updateStudentUseCase(StudentRepository studentRepository,
                                                      StudentValidator studentValidator) {
         return new UpdateStudentUseCase(studentRepository, studentValidator);
+    }
+
+    @Bean
+    public DeactivateStudentUseCase deactivateStudentUseCase(StudentRepository studentRepository) {
+        return new DeactivateStudentUseCase(studentRepository);
+    }
+
+    @Bean
+    public ActivateStudentUseCase activateStudentUseCase(StudentRepository studentRepository) {
+        return new ActivateStudentUseCase(studentRepository);
     }
 
     @Bean

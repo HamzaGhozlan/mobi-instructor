@@ -3,10 +3,14 @@ package com.psut.controllers;
 import com.psut.models.student.Student;
 import com.psut.models.student.UpdateStudentRequest;
 import com.psut.repositories.StudentRepository;
+import com.psut.usecases.students.ActivateStudentUseCase;
 import com.psut.usecases.students.CreateStudentUseCase;
+import com.psut.usecases.students.DeactivateStudentUseCase;
 import com.psut.usecases.students.UpdateStudentUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static com.psut.controllers.StudentsController.STUDENTS_BASE_URL;
 
@@ -18,6 +22,13 @@ public class StudentsController {
     private final StudentRepository studentRepository;
     private final CreateStudentUseCase createStudentUseCase;
     private final UpdateStudentUseCase updateStudentUseCase;
+    private final DeactivateStudentUseCase deactivateStudentUseCase;
+    private final ActivateStudentUseCase activateStudentUseCase;
+
+    @GetMapping
+    public List<Student> listStudents() {
+        return studentRepository.findAll();
+    }
 
     @PostMapping
     public Student createStudent(Student student) {
@@ -34,4 +45,17 @@ public class StudentsController {
         Student student = studentRepository.findById(id);
         return updateStudentUseCase.execute(student, updateRequest);
     }
+
+    @PostMapping("{id}/deactivate")
+    public Student deactivateStudent(@PathVariable Long id) {
+        Student student = studentRepository.findById(id);
+        return deactivateStudentUseCase.execute(student);
+    }
+
+    @PostMapping("{id}/activate")
+    public Student ActivateStudent(@PathVariable Long id) {
+        Student student = studentRepository.findById(id);
+        return activateStudentUseCase.execute(student);
+    }
+
 }

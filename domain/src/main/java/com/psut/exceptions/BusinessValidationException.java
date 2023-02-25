@@ -1,4 +1,4 @@
-package com.psut.validators.exceptions;
+package com.psut.exceptions;
 
 import java.util.Set;
 

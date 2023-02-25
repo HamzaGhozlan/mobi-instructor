@@ -1,4 +1,4 @@
-package com.psut.validators.exceptions;
+package com.psut.exceptions;
 
 public class RecordNotFoundException extends RuntimeException {
     public RecordNotFoundException(){

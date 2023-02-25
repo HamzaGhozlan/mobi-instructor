@@ -1,4 +1,4 @@
-package com.psut.validators.exceptions;
+package com.psut.exceptions;
 
 public class TechnicalValidationException extends RuntimeException{
     public TechnicalValidationException(String errorMessage) {

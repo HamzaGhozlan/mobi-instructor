@@ -1,6 +1,5 @@
 package com.psut.usecases.students;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.psut.models.student.Student;
 import com.psut.models.student.UpdateStudentRequest;
 import com.psut.repositories.StudentRepository;

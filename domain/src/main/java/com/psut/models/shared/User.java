@@ -11,4 +11,5 @@ public abstract class User {
     private Gender gender;
     private String username;
     private String password;
+    private UserStatus status;
 }
