@@ -16,7 +16,8 @@ import java.util.List;
 import static com.psut.controllers.StudentsController.STUDENTS_BASE_URL;
 
 @RequiredArgsConstructor
-@RestController(STUDENTS_BASE_URL)
+@RestController
+@RequestMapping(STUDENTS_BASE_URL)
 public class StudentsController {
     public static final String STUDENTS_BASE_URL = "/api/v1/students";
 
@@ -32,7 +33,7 @@ public class StudentsController {
     }
 
     @PostMapping
-    public Student createStudent(Student student) {
+    public Student createStudent(@RequestBody Student student) {
         return createStudentUseCase.execute(student);
     }
 

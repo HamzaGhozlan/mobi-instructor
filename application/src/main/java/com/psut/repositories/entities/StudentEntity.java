@@ -1,8 +1,26 @@
 package com.psut.repositories.entities;
 
-import jakarta.persistence.Entity;
+import com.psut.models.shared.Gender;
+import com.psut.models.shared.UserStatus;
+import jakarta.persistence.*;
+import lombok.Data;
 
-@Entity(name = "student")
-public class StudentEntity extends UserEntity {
+@Data
+@Entity
+@Table(name = "student")
+public class StudentEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+    private String username;
+    private String password;
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
     private String email;
 }

@@ -1,14 +1,30 @@
 package com.psut.repositories.entities;
 
+import com.psut.models.shared.Gender;
+import com.psut.models.shared.UserStatus;
 import com.psut.models.teacher.TargetedGender;
 import com.psut.models.teacher.TeachingWay;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+import lombok.Data;
 
 import java.math.BigDecimal;
 
-@Entity(name = "teacher")
-public class TeacherEntity extends UserEntity {
+@Data
+@Entity
+@Table(name = "teacher")
+public class TeacherEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+    private String username;
+    private String password;
+    private UserStatus status;
     private String email;
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -16,8 +32,10 @@ public class TeacherEntity extends UserEntity {
     private String branch;
     private String subject;
     @Column(name = "targeted_students")
+    @Enumerated(EnumType.STRING)
     private TargetedGender targetedStudents;
     @Column(name = "teaching_way")
+    @Enumerated(EnumType.STRING)
     private TeachingWay teachingWay;
     @Column(name = "price_per_hour")
     private BigDecimal pricePerHour;
