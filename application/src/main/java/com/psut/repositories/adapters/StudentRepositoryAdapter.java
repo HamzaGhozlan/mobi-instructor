@@ -31,10 +31,15 @@ public class StudentRepositoryAdapter implements StudentRepository<StudentSpecif
         return mapper.toDomain(studentEntity);
     }
 
+    public List<Student> findAll() {
+        return getDomainListFromEntity(jpaRepository.findAll());
+    }
+
     public List<Student> findAll(StudentSpecifications specifications) {
-        return jpaRepository.findAll(specifications)
-                .stream()
-                .map(mapper::toDomain)
-                .collect(Collectors.toList());
+        return getDomainListFromEntity(jpaRepository.findAll(specifications));
+    }
+
+    private List<Student> getDomainListFromEntity(List<StudentEntity> students){
+        return students.stream().map(mapper::toDomain).collect(Collectors.toList());
     }
 }

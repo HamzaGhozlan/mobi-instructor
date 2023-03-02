@@ -11,7 +11,7 @@ import org.springframework.data.jpa.domain.Specification;
         @Spec(params = "firstName", path = "firstName", spec = Like.class),
         @Spec(params = "lastName", path = "lastName", spec = Like.class),
         @Spec(params = "gender", path = "gender", spec = Equal.class),
-        @Spec(params = "status", path = "status", spec = Equal.class),
+        @Spec(params = "status", path = "status", spec = Equal.class)
 })
 public interface StudentSpecifications extends Specification<StudentEntity> {
 }

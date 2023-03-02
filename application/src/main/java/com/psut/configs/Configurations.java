@@ -42,8 +42,8 @@ public class Configurations {
     }
 
     @Bean
-    public UsernameValidator usernameValidator() {
-        return new UsernameValidator();
+    public UsernameValidator usernameValidator(StudentRepository studentRepository) {
+        return new UsernameValidator(studentRepository);
     }
 
     @Bean

@@ -9,5 +9,7 @@ public interface StudentRepository<Specifications> {
 
     Student findById(Long id);
 
+    List<Student> findAll();
+
     List<Student> findAll(Specifications specifications);
 }

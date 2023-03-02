@@ -16,7 +16,7 @@ public class StudentValidator extends AbstractValidator {
         validateNotBlank(student.getFirstName(), "first.name");
         validateNotBlank(student.getLastName(), "last.name");
         validateEmail(student.getEmail());
-        usernameValidator.validate(student.getUsername(), violations);
+        usernameValidator.validate(student, violations);
         passwordValidator.validate(student.getPassword(), violations);
         return violations;
     }
