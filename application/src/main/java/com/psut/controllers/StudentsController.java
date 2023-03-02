@@ -3,6 +3,7 @@ package com.psut.controllers;
 import com.psut.models.student.Student;
 import com.psut.models.student.UpdateStudentRequest;
 import com.psut.repositories.StudentRepository;
+import com.psut.repositories.adapters.StudentRepositoryAdapter;
 import com.psut.repositories.specifications.StudentSpecifications;
 import com.psut.usecases.student.ActivateStudentUseCase;
 import com.psut.usecases.student.CreateStudentUseCase;
@@ -26,6 +27,7 @@ public class StudentsController {
     private final UpdateStudentUseCase updateStudentUseCase;
     private final DeactivateStudentUseCase deactivateStudentUseCase;
     private final ActivateStudentUseCase activateStudentUseCase;
+    private final StudentRepositoryAdapter repositoryAdapter;
 
     @GetMapping
     public List<Student> listStudents(StudentSpecifications specifications) {

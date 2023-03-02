@@ -13,9 +13,11 @@ public class UsernameValidator {
     private final StudentRepository studentRepository;
 
     public void validate(Student student, Set<String> violations) {
-        //TODO: filter listed students to whom have same username
-        List<Student> similarStudent = studentRepository.findAll();
-        if(Objects.nonNull(similarStudent) && !similarStudent.isEmpty() && !similarStudent.get(0).getId().equals(student.getId())) {
+        Student example = new Student();
+        example.setUsername(student.getUsername());
+        List<Student> similarStudent = studentRepository.findAll(example);
+
+        if (Objects.nonNull(similarStudent) && !similarStudent.isEmpty() && !similarStudent.get(0).getId().equals(student.getId())) {
             violations.add("username.is.used");
         }
     }
