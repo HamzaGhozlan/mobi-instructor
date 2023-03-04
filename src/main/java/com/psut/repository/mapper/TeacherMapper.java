@@ -1,7 +1,7 @@
-package com.psut.repository.mappers;
+package com.psut.repository.mapper;
 
 import com.psut.model.teacher.Teacher;
-import com.psut.repository.entities.TeacherEntity;
+import com.psut.repository.entity.TeacherEntity;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

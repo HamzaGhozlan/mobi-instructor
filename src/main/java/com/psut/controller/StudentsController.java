@@ -3,11 +3,11 @@ package com.psut.controller;
 import com.psut.model.student.Student;
 import com.psut.model.student.UpdateStudentRequest;
 import com.psut.repository.impl.StudentRepository;
-import com.psut.repository.specifications.StudentSpecifications;
-import com.psut.usecase.student.ActivateStudentUseCase;
-import com.psut.usecase.student.CreateStudentUseCase;
-import com.psut.usecase.student.DeactivateStudentUseCase;
-import com.psut.usecase.student.UpdateStudentUseCase;
+import com.psut.repository.specification.StudentSpecifications;
+import com.psut.domain.usecase.student.ActivateStudentUseCase;
+import com.psut.domain.usecase.student.CreateStudentUseCase;
+import com.psut.domain.usecase.student.DeactivateStudentUseCase;
+import com.psut.domain.usecase.student.UpdateStudentUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

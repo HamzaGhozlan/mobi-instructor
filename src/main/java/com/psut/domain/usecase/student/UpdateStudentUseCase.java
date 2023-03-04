@@ -1,10 +1,10 @@
-package com.psut.usecase.student;
+package com.psut.domain.usecase.student;
 
 import com.psut.exception.BusinessValidationException;
 import com.psut.model.student.Student;
 import com.psut.model.student.UpdateStudentRequest;
 import com.psut.repository.impl.StudentRepository;
-import com.psut.validator.StudentValidator;
+import com.psut.domain.validator.StudentValidator;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Set;
@@ -17,7 +17,7 @@ public class UpdateStudentUseCase {
     public Student execute(Student student, UpdateStudentRequest updateRequest) {
         updateRequest.applyUpdatesOn(student);
         validate(student);
-        return studentRepository.save(student);
+        return studentRepository.update(student);
     }
 
     private void validate(Student student) {

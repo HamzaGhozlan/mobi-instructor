@@ -1,13 +1,13 @@
 package com.psut.config;
 
 import com.psut.repository.impl.StudentRepository;
-import com.psut.usecase.student.ActivateStudentUseCase;
-import com.psut.usecase.student.CreateStudentUseCase;
-import com.psut.usecase.student.DeactivateStudentUseCase;
-import com.psut.usecase.student.UpdateStudentUseCase;
-import com.psut.validator.PasswordValidator;
-import com.psut.validator.StudentValidator;
-import com.psut.validator.UsernameValidator;
+import com.psut.domain.usecase.student.ActivateStudentUseCase;
+import com.psut.domain.usecase.student.CreateStudentUseCase;
+import com.psut.domain.usecase.student.DeactivateStudentUseCase;
+import com.psut.domain.usecase.student.UpdateStudentUseCase;
+import com.psut.domain.validator.PasswordValidator;
+import com.psut.domain.validator.StudentValidator;
+import com.psut.domain.validator.UsernameValidator;
 import net.kaczmarzyk.spring.data.jpa.web.SpecificationArgumentResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

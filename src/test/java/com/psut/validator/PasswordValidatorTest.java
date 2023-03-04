@@ -1,5 +1,6 @@
 package com.psut.validator;
 
+import com.psut.domain.validator.PasswordValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

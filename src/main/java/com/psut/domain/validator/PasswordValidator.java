@@ -1,4 +1,4 @@
-package com.psut.validator;
+package com.psut.domain.validator;
 
 import io.micrometer.common.util.StringUtils;
 

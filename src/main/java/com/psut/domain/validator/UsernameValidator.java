@@ -1,4 +1,4 @@
-package com.psut.validator;
+package com.psut.domain.validator;
 
 import com.psut.model.student.Student;
 import com.psut.repository.impl.StudentRepository;

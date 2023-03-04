@@ -1,6 +1,6 @@
-package com.psut.repository.specifications;
+package com.psut.repository.specification;
 
-import com.psut.repository.entities.StudentEntity;
+import com.psut.repository.entity.StudentEntity;
 import net.kaczmarzyk.spring.data.jpa.domain.Equal;
 import net.kaczmarzyk.spring.data.jpa.domain.Like;
 import net.kaczmarzyk.spring.data.jpa.web.annotation.And;

@@ -1,13 +1,17 @@
-package com.psut.usecase.student;
+package com.psut.domain.usecase.student;
 
-import com.psut.exception.TechnicalValidationException;
+import com.psut.exception.BusinessValidationException;
 import com.psut.model.shared.UserStatus;
 import com.psut.model.student.Student;
 import com.psut.repository.impl.StudentRepository;
+import com.psut.domain.validator.StudentValidator;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Set;
+
 @RequiredArgsConstructor
-public class ActivateStudentUseCase {
+public class CreateStudentUseCase {
+    private final StudentValidator studentValidator;
     private final StudentRepository studentRepository;
 
     public Student execute(Student student) {
@@ -17,8 +21,9 @@ public class ActivateStudentUseCase {
     }
 
     private void validate(Student student) {
-        if (UserStatus.ACTIVE.equals(student.getStatus())) {
-            throw new TechnicalValidationException("student.is.already.active");
+        Set<String> violations = studentValidator.validate(student);
+        if (!violations.isEmpty()) {
+            throw new BusinessValidationException(violations);
         }
     }
 }
