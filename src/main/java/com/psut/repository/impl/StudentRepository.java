@@ -28,11 +28,11 @@ public class StudentRepository {
 
     public List<Student> findAll(Student example) {
         Example<StudentEntity> example1 = Example.of(mapper.toEntity(example));
-        return getDomainListFromEntity(jpaRepository.findAll(example1));
+        return getDomainListFromEntities(jpaRepository.findAll(example1));
     }
 
     public List<Student> findAll(StudentSpecifications specifications) {
-        return getDomainListFromEntity(jpaRepository.findAll(specifications));
+        return getDomainListFromEntities(jpaRepository.findAll(specifications));
     }
 
     public Student save(Student student) {
@@ -42,7 +42,7 @@ public class StudentRepository {
     }
 
     public Student update(Student student) {
-        if (Objects.isNull(findById(student.getId()))) {
+        if (Objects.isNull(jpaRepository.findById(student.getId()))) {
             throw new RecordNotFoundException();
         }
         StudentEntity studentEntity = mapper.toEntity(student);
@@ -50,7 +50,7 @@ public class StudentRepository {
         return mapper.toDomain(studentEntity);
     }
 
-    private List<Student> getDomainListFromEntity(List<StudentEntity> students) {
+    private List<Student> getDomainListFromEntities(List<StudentEntity> students) {
         return students.stream().map(mapper::toDomain).collect(Collectors.toList());
     }
 }

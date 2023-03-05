@@ -3,7 +3,9 @@ package com.psut.controller;
 import com.psut.domain.usecase.teacher.CreateTeacherUseCase;
 import com.psut.domain.usecase.teacher.UpdateTeacherUseCase;
 import com.psut.model.teacher.Teacher;
+import com.psut.model.teacher.UpdateTeacherRequest;
 import com.psut.repository.impl.TeacherRepository;
+import com.psut.repository.specification.TeacherSpecifications;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,22 +24,24 @@ public class TeachersController {
     private final UpdateTeacherUseCase updateTeacherUseCase;
 
     @GetMapping
-    public List<Teacher> listTeachers() {
-        return null;
+    public List<Teacher> listTeachers(TeacherSpecifications specifications) {
+        return teacherRepository.findAll(specifications);
     }
 
     @PostMapping
     public Teacher createTeacher(@RequestBody Teacher teacher) {
-        return null;
+        return createTeacherUseCase.execute(teacher);
     }
 
     @GetMapping("/{id}")
-    public Teacher getTeacher(@PathVariable String id) {
-        return null;
+    public Teacher getTeacher(@PathVariable Long id) {
+        return teacherRepository.findById(id);
     }
 
     @PutMapping("/{id}")
-    public Teacher updateTeacher(@PathVariable String id) {
-        return null;
+    public Teacher updateTeacher(@PathVariable Long id, @RequestBody UpdateTeacherRequest updateRequest) {
+        return updateTeacherUseCase.execute(teacherRepository.findById(id), updateRequest);
     }
+
+
 }

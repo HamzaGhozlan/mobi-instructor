@@ -4,7 +4,6 @@ import com.psut.model.shared.Gender;
 import com.psut.model.shared.User;
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Data

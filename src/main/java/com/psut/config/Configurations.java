@@ -1,13 +1,17 @@
 package com.psut.config;
 
-import com.psut.repository.impl.StudentRepository;
 import com.psut.domain.usecase.student.ActivateStudentUseCase;
 import com.psut.domain.usecase.student.CreateStudentUseCase;
 import com.psut.domain.usecase.student.DeactivateStudentUseCase;
 import com.psut.domain.usecase.student.UpdateStudentUseCase;
+import com.psut.domain.usecase.teacher.CreateTeacherUseCase;
+import com.psut.domain.usecase.teacher.UpdateTeacherUseCase;
 import com.psut.domain.validator.PasswordValidator;
 import com.psut.domain.validator.StudentValidator;
+import com.psut.domain.validator.TeacherValidator;
 import com.psut.domain.validator.UsernameValidator;
+import com.psut.repository.impl.StudentRepository;
+import com.psut.repository.impl.TeacherRepository;
 import net.kaczmarzyk.spring.data.jpa.web.SpecificationArgumentResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,14 +52,15 @@ public class Configurations implements WebMvcConfigurer {
     }
 
     @Bean
-    public StudentValidator studentValidator(PasswordValidator passwordValidator,
-                                             UsernameValidator usernameValidator) {
-        return new StudentValidator(passwordValidator, usernameValidator);
+    public StudentValidator studentValidator(UsernameValidator usernameValidator,
+                                             PasswordValidator passwordValidator) {
+        return new StudentValidator(usernameValidator, passwordValidator);
     }
 
     @Bean
-    public UsernameValidator usernameValidator(StudentRepository studentRepository) {
-        return new UsernameValidator(studentRepository);
+    public UsernameValidator usernameValidator(StudentRepository studentRepository,
+                                               TeacherRepository teacherRepository) {
+        return new UsernameValidator(studentRepository, teacherRepository);
     }
 
     @Bean
@@ -63,4 +68,21 @@ public class Configurations implements WebMvcConfigurer {
         return new PasswordValidator();
     }
 
+    @Bean
+    public CreateTeacherUseCase createTeacherUseCase(TeacherValidator teacherValidator,
+                                                     TeacherRepository teacherRepository) {
+        return new CreateTeacherUseCase(teacherValidator, teacherRepository);
+    }
+
+    @Bean
+    public UpdateTeacherUseCase updateTeacherUseCase(TeacherValidator teacherValidator,
+                                                     TeacherRepository teacherRepository){
+        return new UpdateTeacherUseCase(teacherValidator, teacherRepository);
+    }
+
+    @Bean
+    public TeacherValidator teachervalidator(UsernameValidator usernameValidator,
+                                             PasswordValidator passwordValidator) {
+        return new TeacherValidator(usernameValidator, passwordValidator);
+    }
 }

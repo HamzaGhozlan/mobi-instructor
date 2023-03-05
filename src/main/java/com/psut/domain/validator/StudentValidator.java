@@ -9,8 +9,8 @@ import java.util.Set;
 
 @RequiredArgsConstructor
 public class StudentValidator extends AbstractValidator {
-    private final PasswordValidator passwordValidator;
     private final UsernameValidator usernameValidator;
+    private final PasswordValidator passwordValidator;
 
     public Set<String> validate(Student student) {
         violations = new HashSet();

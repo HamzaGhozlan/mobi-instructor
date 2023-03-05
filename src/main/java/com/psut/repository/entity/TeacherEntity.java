@@ -1,6 +1,5 @@
 package com.psut.repository.entity;
 
-import com.psut.model.shared.Evaluation;
 import com.psut.model.shared.Gender;
 import com.psut.model.shared.User;
 import com.psut.model.teacher.TeachingWay;
@@ -28,5 +27,5 @@ public class TeacherEntity extends User {
     @Column(name = "rate_avg")
     private Double rateAvg;
 
-    //TODO: adding courses with its details
+    //TODO: add courses list to the teacher
 }
