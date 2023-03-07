@@ -5,13 +5,16 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "evaluation_entity")
+@Table(name = "evaluation")
 public class EvaluationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Double rate;
+    private int rate;
     private String review;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id")
+    private StudentEntity student;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_id")
     private TeacherEntity teacher;

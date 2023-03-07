@@ -43,5 +43,4 @@ public class TeachersController {
         return updateTeacherUseCase.execute(teacherRepository.findById(id), updateRequest);
     }
 
-
 }

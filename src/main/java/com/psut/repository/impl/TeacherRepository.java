@@ -11,7 +11,6 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -21,8 +20,7 @@ public class TeacherRepository {
     private final TeacherMapper mapper;
 
     public Teacher findById(Long id) {
-        TeacherEntity teacherEntity = jpaRepository.findById(id)
-                .orElseThrow(RecordNotFoundException::new);
+        TeacherEntity teacherEntity = validateExistence(id);
         return mapper.toDomain(teacherEntity);
     }
 
@@ -43,12 +41,15 @@ public class TeacherRepository {
     }
 
     public Teacher update(Teacher teacher) {
-        if(Objects.isNull(jpaRepository.findById(teacher.getId()))){
-            throw new RecordNotFoundException();
-        }
+        validateExistence(teacher.getId());
         TeacherEntity teacherEntity = mapper.toEntity(teacher);
         teacherEntity = jpaRepository.save(teacherEntity);
         return mapper.toDomain(teacherEntity);
+    }
+
+    private TeacherEntity validateExistence(Long id) {
+        return jpaRepository.findById(id)
+                .orElseThrow(RecordNotFoundException::new);
     }
 
     private List<Teacher> getDomainListFromEntities(List<TeacherEntity> teachers) {

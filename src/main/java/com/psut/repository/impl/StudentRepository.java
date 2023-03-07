@@ -21,8 +21,7 @@ public class StudentRepository {
     private final StudentMapper mapper;
 
     public Student findById(Long id) {
-        StudentEntity studentEntity = jpaRepository.findById(id)
-                .orElseThrow(RecordNotFoundException::new);
+        StudentEntity studentEntity = validateExistence(id);
         return mapper.toDomain(studentEntity);
     }
 
@@ -42,12 +41,15 @@ public class StudentRepository {
     }
 
     public Student update(Student student) {
-        if (Objects.isNull(jpaRepository.findById(student.getId()))) {
-            throw new RecordNotFoundException();
-        }
+        validateExistence(student.getId());
         StudentEntity studentEntity = mapper.toEntity(student);
         studentEntity = jpaRepository.save(studentEntity);
         return mapper.toDomain(studentEntity);
+    }
+
+    private StudentEntity validateExistence(Long id) {
+        return jpaRepository.findById(id)
+                .orElseThrow(RecordNotFoundException::new);
     }
 
     private List<Student> getDomainListFromEntities(List<StudentEntity> students) {
