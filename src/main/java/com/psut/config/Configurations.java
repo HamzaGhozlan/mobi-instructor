@@ -1,6 +1,7 @@
 package com.psut.config;
 
 import com.psut.domain.usecase.evaluation.AddEvaluationUseCase;
+import com.psut.domain.usecase.evaluation.DeleteEvaluationUseCase;
 import com.psut.domain.usecase.evaluation.UpdateEvaluationUseCase;
 import com.psut.domain.usecase.student.ActivateStudentUseCase;
 import com.psut.domain.usecase.student.CreateStudentUseCase;
@@ -96,6 +97,11 @@ public class Configurations implements WebMvcConfigurer {
     public UpdateEvaluationUseCase updateEvaluationUseCase(EvaluationValidator evaluationValidator,
                                                            EvaluationService evaluationService) {
         return new UpdateEvaluationUseCase(evaluationValidator, evaluationService);
+    }
+
+    @Bean
+    public DeleteEvaluationUseCase deleteEvaluationUseCase(EvaluationService evaluationService) {
+        return new DeleteEvaluationUseCase(evaluationService);
     }
 
     @Bean
