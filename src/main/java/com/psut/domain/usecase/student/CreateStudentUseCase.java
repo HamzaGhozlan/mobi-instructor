@@ -3,7 +3,7 @@ package com.psut.domain.usecase.student;
 import com.psut.exception.BusinessValidationException;
 import com.psut.model.shared.UserStatus;
 import com.psut.model.student.Student;
-import com.psut.repository.impl.StudentRepository;
+import com.psut.service.StudentService;
 import com.psut.domain.validator.StudentValidator;
 import lombok.RequiredArgsConstructor;
 
@@ -12,12 +12,12 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class CreateStudentUseCase {
     private final StudentValidator studentValidator;
-    private final StudentRepository studentRepository;
+    private final StudentService studentService;
 
     public Student execute(Student student) {
         validate(student);
         student.setStatus(UserStatus.ACTIVE);
-        return studentRepository.save(student);
+        return studentService.save(student);
     }
 
     private void validate(Student student) {

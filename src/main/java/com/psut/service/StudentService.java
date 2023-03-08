@@ -1,4 +1,4 @@
-package com.psut.repository.impl;
+package com.psut.service;
 
 import com.psut.exception.RecordNotFoundException;
 import com.psut.model.student.Student;
@@ -8,15 +8,14 @@ import com.psut.repository.mapper.StudentMapper;
 import com.psut.repository.specification.StudentSpecifications;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 @RequiredArgsConstructor
-public class StudentRepository {
+public class StudentService {
     private final JpaStudentRepository jpaRepository;
     private final StudentMapper mapper;
 

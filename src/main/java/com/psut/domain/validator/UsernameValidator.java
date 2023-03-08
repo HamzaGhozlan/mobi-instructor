@@ -3,8 +3,8 @@ package com.psut.domain.validator;
 import com.psut.model.shared.User;
 import com.psut.model.student.Student;
 import com.psut.model.teacher.Teacher;
-import com.psut.repository.impl.StudentRepository;
-import com.psut.repository.impl.TeacherRepository;
+import com.psut.service.StudentService;
+import com.psut.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -13,8 +13,8 @@ import java.util.Set;
 
 @RequiredArgsConstructor
 public class UsernameValidator {
-    private final StudentRepository studentRepository;
-    private final TeacherRepository teacherRepository;
+    private final StudentService studentService;
+    private final TeacherService teacherService;
 
     public void validate(User user, Set<String> violations) {
         if(usedFromStudent(user.getId(), user.getUsername()) || usedFromTeacher(user.getId(), user.getUsername())){
@@ -25,7 +25,7 @@ public class UsernameValidator {
     private boolean usedFromStudent(Long id, String username){
         Student example = new Student();
         example.setUsername(username);
-        List<Student> similarStudent = studentRepository.findAll(example);
+        List<Student> similarStudent = studentService.findAll(example);
 
         return Objects.nonNull(similarStudent)
                 && !similarStudent.isEmpty()
@@ -35,7 +35,7 @@ public class UsernameValidator {
     private boolean usedFromTeacher(Long id, String username){
         Teacher example = new Teacher();
         example.setUsername(username);
-        List<Teacher> similarTeacher = teacherRepository.findAll(example);
+        List<Teacher> similarTeacher = teacherService.findAll(example);
 
         return Objects.nonNull(similarTeacher)
                 && !similarTeacher.isEmpty()

@@ -1,4 +1,4 @@
-package com.psut.model.shared;
+package com.psut.model.evaluation;
 
 import lombok.Data;
 

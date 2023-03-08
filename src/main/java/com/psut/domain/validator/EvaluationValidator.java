@@ -1,6 +1,6 @@
 package com.psut.domain.validator;
 
-import com.psut.model.shared.Evaluation;
+import com.psut.model.evaluation.Evaluation;
 
 import java.util.Objects;
 import java.util.Set;

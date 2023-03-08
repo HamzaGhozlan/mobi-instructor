@@ -1,7 +1,7 @@
-package com.psut.repository.impl;
+package com.psut.service;
 
 import com.psut.exception.RecordNotFoundException;
-import com.psut.model.shared.Evaluation;
+import com.psut.model.evaluation.Evaluation;
 import com.psut.repository.JpaEvaluationRepository;
 import com.psut.repository.JpaStudentRepository;
 import com.psut.repository.JpaTeacherRepository;
@@ -11,18 +11,21 @@ import com.psut.repository.entity.TeacherEntity;
 import com.psut.repository.mapper.EvaluationMapper;
 import com.psut.repository.specification.EvaluationSpecification;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 @RequiredArgsConstructor
-public class EvaluationRepository {
+public class EvaluationService {
     private final JpaEvaluationRepository jpaRepository;
     private final JpaStudentRepository jpaStudentRepository;
     private final JpaTeacherRepository jpaTeacherRepository;
     private final EvaluationMapper mapper;
 
-    public List<Evaluation> findAll(EvaluationSpecification specifications){
+    public List<Evaluation> findAll(EvaluationSpecification specifications) {
         return jpaRepository.findAll(specifications)
                 .stream()
                 .map(mapper::toDomain)
@@ -34,6 +37,7 @@ public class EvaluationRepository {
         return mapper.toDomain(evaluationEntity);
     }
 
+    @Transactional
     public Evaluation save(Evaluation evaluation) {
         EvaluationEntity evaluationEntity = mapper.toEntity(evaluation);
         evaluationEntity.setStudent(validateStudentExistence(evaluation.getTeacherId()));
@@ -46,6 +50,7 @@ public class EvaluationRepository {
         return savedEvaluation;
     }
 
+    @Transactional
     public Evaluation update(Evaluation evaluation) {
         validateEvaluationExistence(evaluation.getId());
         EvaluationEntity evaluationEntity = mapper.toEntity(evaluation);
@@ -59,6 +64,7 @@ public class EvaluationRepository {
         return savedEvaluation;
     }
 
+    @Transactional
     public void delete(Evaluation evaluation) {
         jpaRepository.deleteById(evaluation.getId());
         updateTeacherRateAvg(evaluation.getTeacherId());

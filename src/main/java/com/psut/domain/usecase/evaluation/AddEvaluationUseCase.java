@@ -1,9 +1,9 @@
-package com.psut.domain.usecase.teacher;
+package com.psut.domain.usecase.evaluation;
 
 import com.psut.domain.validator.EvaluationValidator;
 import com.psut.exception.BusinessValidationException;
-import com.psut.model.shared.Evaluation;
-import com.psut.repository.impl.EvaluationRepository;
+import com.psut.model.evaluation.Evaluation;
+import com.psut.service.EvaluationService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Set;
@@ -11,11 +11,11 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class AddEvaluationUseCase {
     private final EvaluationValidator evaluationValidator;
-    private final EvaluationRepository repository;
+    private final EvaluationService service;
 
     public Evaluation execute(Evaluation evaluation) {
         validate(evaluation);
-        return repository.save(evaluation);
+        return service.save(evaluation);
     }
 
     private void validate(Evaluation evaluation) {

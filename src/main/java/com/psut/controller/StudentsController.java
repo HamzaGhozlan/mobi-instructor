@@ -2,7 +2,7 @@ package com.psut.controller;
 
 import com.psut.model.student.Student;
 import com.psut.model.student.UpdateStudentRequest;
-import com.psut.repository.impl.StudentRepository;
+import com.psut.service.StudentService;
 import com.psut.repository.specification.StudentSpecifications;
 import com.psut.domain.usecase.student.ActivateStudentUseCase;
 import com.psut.domain.usecase.student.CreateStudentUseCase;
@@ -21,7 +21,7 @@ import static com.psut.controller.StudentsController.STUDENTS_BASE_URL;
 public class StudentsController {
     public static final String STUDENTS_BASE_URL = "/api/v1/students";
 
-    private final StudentRepository studentRepository;
+    private final StudentService studentService;
     private final CreateStudentUseCase createStudentUseCase;
     private final UpdateStudentUseCase updateStudentUseCase;
     private final DeactivateStudentUseCase deactivateStudentUseCase;
@@ -29,7 +29,7 @@ public class StudentsController {
 
     @GetMapping
     public List<Student> listStudents(StudentSpecifications specifications) {
-        return studentRepository.findAll(specifications);
+        return studentService.findAll(specifications);
     }
 
     @PostMapping
@@ -39,24 +39,24 @@ public class StudentsController {
 
     @GetMapping("/{id}")
     public Student getStudent(@PathVariable Long id) {
-        return studentRepository.findById(id);
+        return studentService.findById(id);
     }
 
     @PutMapping("/{id}")
     public Student updateStudent(@PathVariable Long id, @RequestBody UpdateStudentRequest updateRequest) {
-        Student student = studentRepository.findById(id);
+        Student student = studentService.findById(id);
         return updateStudentUseCase.execute(student, updateRequest);
     }
 
     @PostMapping("{id}/deactivate")
     public Student deactivateStudent(@PathVariable Long id) {
-        Student student = studentRepository.findById(id);
+        Student student = studentService.findById(id);
         return deactivateStudentUseCase.execute(student);
     }
 
     @PostMapping("{id}/activate")
     public Student ActivateStudent(@PathVariable Long id) {
-        Student student = studentRepository.findById(id);
+        Student student = studentService.findById(id);
         return activateStudentUseCase.execute(student);
     }
 

@@ -1,17 +1,17 @@
 package com.psut.config;
 
+import com.psut.domain.usecase.evaluation.AddEvaluationUseCase;
+import com.psut.domain.usecase.evaluation.UpdateEvaluationUseCase;
 import com.psut.domain.usecase.student.ActivateStudentUseCase;
 import com.psut.domain.usecase.student.CreateStudentUseCase;
 import com.psut.domain.usecase.student.DeactivateStudentUseCase;
 import com.psut.domain.usecase.student.UpdateStudentUseCase;
 import com.psut.domain.usecase.teacher.CreateTeacherUseCase;
 import com.psut.domain.usecase.teacher.UpdateTeacherUseCase;
-import com.psut.domain.validator.PasswordValidator;
-import com.psut.domain.validator.StudentValidator;
-import com.psut.domain.validator.TeacherValidator;
-import com.psut.domain.validator.UsernameValidator;
-import com.psut.repository.impl.StudentRepository;
-import com.psut.repository.impl.TeacherRepository;
+import com.psut.domain.validator.*;
+import com.psut.service.EvaluationService;
+import com.psut.service.StudentService;
+import com.psut.service.TeacherService;
 import net.kaczmarzyk.spring.data.jpa.web.SpecificationArgumentResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,25 +30,25 @@ public class Configurations implements WebMvcConfigurer {
     }
 
     @Bean
-    public CreateStudentUseCase createStudentUseCase(StudentRepository studentRepository,
+    public CreateStudentUseCase createStudentUseCase(StudentService studentService,
                                                      StudentValidator studentValidator) {
-        return new CreateStudentUseCase(studentValidator, studentRepository);
+        return new CreateStudentUseCase(studentValidator, studentService);
     }
 
     @Bean
-    public UpdateStudentUseCase updateStudentUseCase(StudentRepository studentRepository,
+    public UpdateStudentUseCase updateStudentUseCase(StudentService studentService,
                                                      StudentValidator studentValidator) {
-        return new UpdateStudentUseCase(studentRepository, studentValidator);
+        return new UpdateStudentUseCase(studentService, studentValidator);
     }
 
     @Bean
-    public DeactivateStudentUseCase deactivateStudentUseCase(StudentRepository studentRepository) {
-        return new DeactivateStudentUseCase(studentRepository);
+    public DeactivateStudentUseCase deactivateStudentUseCase(StudentService studentService) {
+        return new DeactivateStudentUseCase(studentService);
     }
 
     @Bean
-    public ActivateStudentUseCase activateStudentUseCase(StudentRepository studentRepository) {
-        return new ActivateStudentUseCase(studentRepository);
+    public ActivateStudentUseCase activateStudentUseCase(StudentService studentService) {
+        return new ActivateStudentUseCase(studentService);
     }
 
     @Bean
@@ -58,9 +58,9 @@ public class Configurations implements WebMvcConfigurer {
     }
 
     @Bean
-    public UsernameValidator usernameValidator(StudentRepository studentRepository,
-                                               TeacherRepository teacherRepository) {
-        return new UsernameValidator(studentRepository, teacherRepository);
+    public UsernameValidator usernameValidator(StudentService studentService,
+                                               TeacherService teacherService) {
+        return new UsernameValidator(studentService, teacherService);
     }
 
     @Bean
@@ -70,14 +70,14 @@ public class Configurations implements WebMvcConfigurer {
 
     @Bean
     public CreateTeacherUseCase createTeacherUseCase(TeacherValidator teacherValidator,
-                                                     TeacherRepository teacherRepository) {
-        return new CreateTeacherUseCase(teacherValidator, teacherRepository);
+                                                     TeacherService teacherService) {
+        return new CreateTeacherUseCase(teacherValidator, teacherService);
     }
 
     @Bean
     public UpdateTeacherUseCase updateTeacherUseCase(TeacherValidator teacherValidator,
-                                                     TeacherRepository teacherRepository){
-        return new UpdateTeacherUseCase(teacherValidator, teacherRepository);
+                                                     TeacherService teacherService) {
+        return new UpdateTeacherUseCase(teacherValidator, teacherService);
     }
 
     @Bean
@@ -85,4 +85,22 @@ public class Configurations implements WebMvcConfigurer {
                                              PasswordValidator passwordValidator) {
         return new TeacherValidator(usernameValidator, passwordValidator);
     }
+
+    @Bean
+    public AddEvaluationUseCase addEvaluationUseCase(EvaluationValidator evaluationValidator,
+                                                     EvaluationService evaluationService) {
+        return new AddEvaluationUseCase(evaluationValidator, evaluationService);
+    }
+
+    @Bean
+    public UpdateEvaluationUseCase updateEvaluationUseCase(EvaluationValidator evaluationValidator,
+                                                           EvaluationService evaluationService) {
+        return new UpdateEvaluationUseCase(evaluationValidator, evaluationService);
+    }
+
+    @Bean
+    public EvaluationValidator evaluationValidator() {
+        return new EvaluationValidator();
+    }
+
 }

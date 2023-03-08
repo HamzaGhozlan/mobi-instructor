@@ -1,4 +1,4 @@
-package com.psut.repository.impl;
+package com.psut.service;
 
 import com.psut.exception.RecordNotFoundException;
 import com.psut.model.teacher.Teacher;
@@ -8,14 +8,14 @@ import com.psut.repository.mapper.TeacherMapper;
 import com.psut.repository.specification.TeacherSpecifications;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 @RequiredArgsConstructor
-public class TeacherRepository {
+public class TeacherService {
     private final JpaTeacherRepository jpaRepository;
     private final TeacherMapper mapper;
 
@@ -30,7 +30,7 @@ public class TeacherRepository {
         return getDomainListFromEntities(teachers);
     }
 
-    public List<Teacher> findAll(TeacherSpecifications specifications){
+    public List<Teacher> findAll(TeacherSpecifications specifications) {
         return getDomainListFromEntities(jpaRepository.findAll(specifications));
     }
 

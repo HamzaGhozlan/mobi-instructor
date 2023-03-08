@@ -1,6 +1,6 @@
 package com.psut.repository.mapper;
 
-import com.psut.model.shared.Evaluation;
+import com.psut.model.evaluation.Evaluation;
 import com.psut.repository.entity.EvaluationEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

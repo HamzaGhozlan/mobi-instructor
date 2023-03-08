@@ -4,7 +4,7 @@ import com.psut.domain.validator.TeacherValidator;
 import com.psut.exception.BusinessValidationException;
 import com.psut.model.shared.UserStatus;
 import com.psut.model.teacher.Teacher;
-import com.psut.repository.impl.TeacherRepository;
+import com.psut.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Objects;
@@ -13,12 +13,12 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class CreateTeacherUseCase {
     private final TeacherValidator teacherValidator;
-    private final TeacherRepository teacherRepository;
+    private final TeacherService teacherService;
 
     public Teacher execute(Teacher teacher) {
         validate(teacher);
         teacher.setStatus(UserStatus.ACTIVE);
-        return teacherRepository.save(teacher);
+        return teacherService.save(teacher);
     }
 
     private void validate(Teacher teacher) {

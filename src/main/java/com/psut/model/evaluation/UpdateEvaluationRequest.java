@@ -1,5 +1,6 @@
-package com.psut.model.shared;
+package com.psut.model.evaluation;
 
+import com.psut.model.evaluation.Evaluation;
 import lombok.Data;
 
 @Data

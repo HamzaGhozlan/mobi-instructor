@@ -3,7 +3,6 @@ package com.psut.domain.validator;
 import com.psut.model.shared.Gender;
 import com.psut.model.teacher.Teacher;
 import com.psut.model.teacher.TeachingWay;
-import com.psut.repository.impl.TeacherRepository;
 import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 
