@@ -9,7 +9,7 @@ import com.psut.repository.entity.EvaluationEntity;
 import com.psut.repository.entity.StudentEntity;
 import com.psut.repository.entity.TeacherEntity;
 import com.psut.repository.mapper.EvaluationMapper;
-import com.psut.repository.specification.EvaluationSpecification;
+import com.psut.repository.specification.EvaluationSpecifications;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +25,7 @@ public class EvaluationService {
     private final JpaTeacherRepository jpaTeacherRepository;
     private final EvaluationMapper mapper;
 
-    public List<Evaluation> findAll(EvaluationSpecification specifications) {
+    public List<Evaluation> findAll(EvaluationSpecifications specifications) {
         return jpaRepository.findAll(specifications)
                 .stream()
                 .map(mapper::toDomain)

@@ -6,7 +6,7 @@ import com.psut.domain.usecase.evaluation.UpdateEvaluationUseCase;
 import com.psut.model.evaluation.Evaluation;
 import com.psut.model.evaluation.UpdateEvaluationRequest;
 import com.psut.service.EvaluationService;
-import com.psut.repository.specification.EvaluationSpecification;
+import com.psut.repository.specification.EvaluationSpecifications;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +26,7 @@ public class EvaluationsController {
     private final DeleteEvaluationUseCase deleteEvaluationUseCase;
 
     @GetMapping
-    public List<Evaluation> listEvaluations(EvaluationSpecification specifications){
+    public List<Evaluation> listEvaluations(EvaluationSpecifications specifications){
         return evaluationService.findAll(specifications);
     }
 

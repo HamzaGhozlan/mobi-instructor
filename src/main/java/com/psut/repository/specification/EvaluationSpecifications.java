@@ -10,5 +10,5 @@ import org.springframework.data.jpa.domain.Specification;
         @Spec(params = "teacherId", path = "teacher.id", spec = Equal.class),
         @Spec(params = "rate", path = "rate", spec = Equal.class)
 })
-public interface EvaluationSpecification extends Specification<EvaluationEntity> {
+public interface EvaluationSpecifications extends Specification<EvaluationEntity> {
 }
