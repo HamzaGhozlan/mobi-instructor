@@ -21,7 +21,7 @@ public abstract class AbstractValidator {
         }
     }
 
-    protected void validateListNotEmpty(List<Object> list, String fieldName) {
+    protected void validateNonEmptyList(List<?> list, String fieldName) {
         if(Objects.isNull(list) || list.isEmpty()) {
             violations.add("invalid." + fieldName);
         }

@@ -7,6 +7,7 @@ import com.psut.model.teacher.UpdateTeacherRequest;
 import com.psut.service.TeacherService;
 import com.psut.repository.specification.TeacherSpecifications;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +25,8 @@ public class TeachersController {
     private final UpdateTeacherUseCase updateTeacherUseCase;
 
     @GetMapping
-    public List<Teacher> listTeachers(TeacherSpecifications specifications) {
-        return teacherService.findAll(specifications);
+    public List<Teacher> listTeachers(TeacherSpecifications specifications, Sort sort) {
+        return teacherService.findAll(specifications, sort);
     }
 
     @PostMapping

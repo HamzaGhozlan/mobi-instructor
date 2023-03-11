@@ -30,4 +30,8 @@ public class TeacherEntity extends User {
     @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MaterialEntity> materials;
+
+    public void setReferenceForAllMaterials() {
+        materials.forEach(material -> material.setTeacher(this));
+    }
 }

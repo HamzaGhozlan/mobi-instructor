@@ -1,5 +1,6 @@
 package com.psut.model.teacher;
 
+import com.psut.model.Material;
 import com.psut.model.shared.Gender;
 import lombok.Data;
 
@@ -16,6 +17,7 @@ public class UpdateTeacherRequest {
     private String city;
     private List<Gender> targetedStudents;
     private List<TeachingWay> teachingWay;
+    private List<Material> materials;
 
     public void applyUpdatesOn(Teacher teacher) {
         teacher.setFirstName(firstName);
@@ -27,5 +29,6 @@ public class UpdateTeacherRequest {
         teacher.setCity(city);
         teacher.setTargetedStudents(targetedStudents);
         teacher.setTeachingWay(teachingWay);
+        teacher.setMaterials(materials);
     }
 }

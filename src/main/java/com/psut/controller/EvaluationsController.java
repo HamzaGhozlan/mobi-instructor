@@ -8,6 +8,7 @@ import com.psut.model.evaluation.UpdateEvaluationRequest;
 import com.psut.service.EvaluationService;
 import com.psut.repository.specification.EvaluationSpecifications;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,8 +27,8 @@ public class EvaluationsController {
     private final DeleteEvaluationUseCase deleteEvaluationUseCase;
 
     @GetMapping
-    public List<Evaluation> listEvaluations(EvaluationSpecifications specifications){
-        return evaluationService.findAll(specifications);
+    public List<Evaluation> listEvaluations(EvaluationSpecifications specifications, Sort sort){
+        return evaluationService.findAll(specifications, sort);
     }
 
     @GetMapping("/{id}")

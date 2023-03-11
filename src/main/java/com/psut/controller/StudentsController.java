@@ -9,6 +9,7 @@ import com.psut.domain.usecase.student.CreateStudentUseCase;
 import com.psut.domain.usecase.student.DeactivateStudentUseCase;
 import com.psut.domain.usecase.student.UpdateStudentUseCase;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,8 +29,8 @@ public class StudentsController {
     private final ActivateStudentUseCase activateStudentUseCase;
 
     @GetMapping
-    public List<Student> listStudents(StudentSpecifications specifications) {
-        return studentService.findAll(specifications);
+    public List<Student> listStudents(StudentSpecifications specifications, Sort sort) {
+        return studentService.findAll(specifications, sort);
     }
 
     @PostMapping

@@ -12,6 +12,7 @@ import java.util.List;
 @Table(name = "material")
 public class MaterialEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Enumerated(EnumType.STRING)
     private Category category;
