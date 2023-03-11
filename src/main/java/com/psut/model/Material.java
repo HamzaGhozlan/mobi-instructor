@@ -1,5 +1,6 @@
 package com.psut.model;
 
+import com.psut.model.teacher.Teacher;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -13,4 +14,6 @@ public class Material {
     private List<String> stages;
     private BigDecimal pricePerHour;
     private BigDecimal pricePerCourse;
+
+    private Teacher teacher;
 }

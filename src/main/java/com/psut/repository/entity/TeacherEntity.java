@@ -27,5 +27,7 @@ public class TeacherEntity extends User {
     @Column(name = "rate_avg")
     private Double rateAvg;
 
-    //TODO: add courses list to the teacher
+    @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MaterialEntity> materials;
 }

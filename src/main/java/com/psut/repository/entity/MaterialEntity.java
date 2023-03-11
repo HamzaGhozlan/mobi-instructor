@@ -22,4 +22,8 @@ public class MaterialEntity {
     private BigDecimal pricePerHour;
     @Column(name = "price_per_course")
     private BigDecimal pricePerCourse;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "teacher_id")
+    private TeacherEntity teacher;
 }

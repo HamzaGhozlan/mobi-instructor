@@ -4,7 +4,7 @@ import com.psut.model.teacher.Teacher;
 import com.psut.repository.entity.TeacherEntity;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = MaterialMapper.class)
 public interface TeacherMapper {
     TeacherEntity toEntity(Teacher teacher);
 
