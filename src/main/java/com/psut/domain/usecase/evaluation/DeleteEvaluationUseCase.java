@@ -8,7 +8,8 @@ import lombok.RequiredArgsConstructor;
 public class DeleteEvaluationUseCase {
     private final EvaluationService service;
 
-    public void execute(Evaluation evaluation) {
+    public void execute(Long id) {
+        Evaluation evaluation = service.findById(id);
         service.delete(evaluation);
     }
 }

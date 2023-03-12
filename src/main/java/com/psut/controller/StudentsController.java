@@ -1,13 +1,13 @@
 package com.psut.controller;
 
-import com.psut.model.student.Student;
-import com.psut.model.student.UpdateStudentRequest;
-import com.psut.service.StudentService;
-import com.psut.repository.specification.StudentSpecifications;
 import com.psut.domain.usecase.student.ActivateStudentUseCase;
 import com.psut.domain.usecase.student.CreateStudentUseCase;
 import com.psut.domain.usecase.student.DeactivateStudentUseCase;
 import com.psut.domain.usecase.student.UpdateStudentUseCase;
+import com.psut.model.student.Student;
+import com.psut.model.student.UpdateStudentRequest;
+import com.psut.repository.specification.StudentSpecifications;
+import com.psut.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
@@ -45,20 +45,17 @@ public class StudentsController {
 
     @PutMapping("/{id}")
     public Student updateStudent(@PathVariable Long id, @RequestBody UpdateStudentRequest updateRequest) {
-        Student student = studentService.findById(id);
-        return updateStudentUseCase.execute(student, updateRequest);
+        return updateStudentUseCase.execute(id, updateRequest);
     }
 
     @PostMapping("{id}/deactivate")
     public Student deactivateStudent(@PathVariable Long id) {
-        Student student = studentService.findById(id);
-        return deactivateStudentUseCase.execute(student);
+        return deactivateStudentUseCase.execute(id);
     }
 
     @PostMapping("{id}/activate")
     public Student ActivateStudent(@PathVariable Long id) {
-        Student student = studentService.findById(id);
-        return activateStudentUseCase.execute(student);
+        return activateStudentUseCase.execute(id);
     }
 
 }

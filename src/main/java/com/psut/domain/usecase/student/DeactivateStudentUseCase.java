@@ -10,7 +10,8 @@ import lombok.RequiredArgsConstructor;
 public class DeactivateStudentUseCase {
     private final StudentService studentService;
 
-    public Student execute(Student student) {
+    public Student execute(Long id) {
+        Student student = studentService.findById(id);
         validate(student);
         student.setStatus(UserStatus.DEACTIVATED);
         return studentService.update(student);

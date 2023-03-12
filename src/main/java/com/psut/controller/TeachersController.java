@@ -41,7 +41,7 @@ public class TeachersController {
 
     @PutMapping("/{id}")
     public Teacher updateTeacher(@PathVariable Long id, @RequestBody UpdateTeacherRequest updateRequest) {
-        return updateTeacherUseCase.execute(teacherService.findById(id), updateRequest);
+        return updateTeacherUseCase.execute(id, updateRequest);
     }
 
 }

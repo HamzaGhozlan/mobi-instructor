@@ -10,7 +10,8 @@ import lombok.RequiredArgsConstructor;
 public class ActivateStudentUseCase {
     private final StudentService studentService;
 
-    public Student execute(Student student) {
+    public Student execute(Long id) {
+        Student student = studentService.findById(id);
         validate(student);
         student.setStatus(UserStatus.ACTIVE);
         return studentService.update(student);

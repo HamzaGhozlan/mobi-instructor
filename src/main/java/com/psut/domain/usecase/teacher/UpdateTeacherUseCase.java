@@ -15,7 +15,8 @@ public class UpdateTeacherUseCase {
     private final TeacherValidator teacherValidator;
     private final TeacherService teacherService;
 
-    public Teacher execute(Teacher teacher, UpdateTeacherRequest updateRequest) {
+    public Teacher execute(Long id, UpdateTeacherRequest updateRequest) {
+        Teacher teacher = teacherService.findById(id);
         updateRequest.applyUpdatesOn(teacher);
         validate(teacher);
         return teacherService.update(teacher);

@@ -67,7 +67,8 @@ public class EvaluationService {
 
     @Transactional
     public void delete(Evaluation evaluation) {
-        jpaRepository.deleteById(evaluation.getId());
+        EvaluationEntity storedEvaluation = validateEvaluationExistence(evaluation.getId());
+        jpaRepository.deleteById(storedEvaluation.getId());
         updateTeacherRateAvg(evaluation.getTeacherId());
     }
 

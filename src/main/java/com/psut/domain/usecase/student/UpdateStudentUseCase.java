@@ -14,7 +14,8 @@ public class UpdateStudentUseCase {
     private final StudentService studentService;
     private final StudentValidator studentValidator;
 
-    public Student execute(Student student, UpdateStudentRequest updateRequest) {
+    public Student execute(Long id, UpdateStudentRequest updateRequest) {
+        Student student = studentService.findById(id);
         updateRequest.applyUpdatesOn(student);
         validate(student);
         return studentService.update(student);

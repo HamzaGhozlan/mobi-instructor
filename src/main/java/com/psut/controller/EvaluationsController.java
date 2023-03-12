@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 import static com.psut.controller.EvaluationsController.EVALUATIONS_BASE_URL;
 
@@ -44,13 +45,11 @@ public class EvaluationsController {
     @PutMapping("/{id}")
     public Evaluation updateEvaluation(@PathVariable Long id,
                                        @RequestBody UpdateEvaluationRequest updateRequest) {
-        Evaluation evaluation = evaluationService.findById(id);
-        return updateEvaluationUseCase.execute(evaluation, updateRequest);
+        return updateEvaluationUseCase.execute(id, updateRequest);
     }
 
     @DeleteMapping("/{id}")
     public void removeEvaluation(@PathVariable Long id) {
-        Evaluation evaluation = evaluationService.findById(id);
-        deleteEvaluationUseCase.execute(evaluation);
+        deleteEvaluationUseCase.execute(id);
     }
 }

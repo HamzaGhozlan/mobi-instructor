@@ -2,11 +2,13 @@ package com.psut.model.teacher;
 
 import com.psut.model.Material;
 import com.psut.model.shared.Gender;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
+@Builder
 public class UpdateTeacherRequest {
     private String firstName;
     private String lastName;
@@ -19,7 +21,7 @@ public class UpdateTeacherRequest {
     private List<TeachingWay> teachingWay;
     private List<Material> materials;
 
-    public void applyUpdatesOn(Teacher teacher) {
+    public Teacher applyUpdatesOn(Teacher teacher) {
         teacher.setFirstName(firstName);
         teacher.setLastName(lastName);
         teacher.setUsername(username);
@@ -30,5 +32,6 @@ public class UpdateTeacherRequest {
         teacher.setTargetedStudents(targetedStudents);
         teacher.setTeachingWay(teachingWay);
         teacher.setMaterials(materials);
+        return teacher;
     }
 }
