@@ -11,7 +11,7 @@ public class EvaluationValidator extends AbstractValidator {
     }
 
     private void validateRate(int rate) {
-        if (rate <= 0 || rate >= 5) {
+        if (rate <= 0 || rate > 5) {
             violations.add("invalid.rate");
         }
     }
