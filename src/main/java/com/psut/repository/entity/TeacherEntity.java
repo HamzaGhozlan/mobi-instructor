@@ -12,6 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "teacher")
 public class TeacherEntity extends User {
+    private String description;
     @Column(name = "phone_number")
     private String phoneNumber;
     private String city;

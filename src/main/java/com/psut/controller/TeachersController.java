@@ -43,4 +43,8 @@ public class TeachersController {
         return updateTeacherUseCase.execute(id, updateRequest);
     }
 
+    @PostMapping("/{id}/description")
+    public String setDescription(@PathVariable Long id, @RequestParam String description) {
+        return teacherService.setDescription(id, description);
+    }
 }

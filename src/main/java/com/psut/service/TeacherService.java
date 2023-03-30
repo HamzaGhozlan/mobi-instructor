@@ -55,6 +55,11 @@ public class TeacherService {
         return mapper.toDomain(teacherEntity);
     }
 
+    public String setDescription(Long id, String description) {
+        validateExistence(id);
+        return jpaRepository.setDescription(id, description);
+    }
+
     private TeacherEntity validateExistence(Long id) {
         return jpaRepository.findById(id)
                 .orElseThrow(RecordNotFoundException::new);

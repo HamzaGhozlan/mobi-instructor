@@ -9,6 +9,7 @@ import java.util.List;
 
 @Data
 public class Teacher extends User {
+    private String description;
     private String phoneNumber;
     private String city;
     private List<Gender> targetedStudents;

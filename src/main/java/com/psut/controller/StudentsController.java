@@ -47,14 +47,23 @@ public class StudentsController {
         return updateStudentUseCase.execute(id, updateRequest);
     }
 
-    @PostMapping("{id}/deactivate")
+    @PostMapping("/{id}/deactivate")
     public Student deactivateStudent(@PathVariable Long id) {
         return deactivateStudentUseCase.execute(id);
     }
 
-    @PostMapping("{id}/activate")
+    @PostMapping("/{id}/activate")
     public Student ActivateStudent(@PathVariable Long id) {
         return activateStudentUseCase.execute(id);
     }
 
+    @PostMapping("/{id}/image")
+    public void addImage(@PathVariable Long id, @RequestBody byte[] image) {
+        //TODO: complete implementation
+    }
+
+    @DeleteMapping("/{id}/image")
+    public void deleteImage(@PathVariable Long id) {
+        //TODO: complete implementation
+    }
 }
