@@ -9,10 +9,9 @@ import com.psut.model.student.UpdateStudentRequest;
 import com.psut.repository.specification.StudentSpecifications;
 import com.psut.service.StudentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 import static com.psut.controller.StudentsController.STUDENTS_BASE_URL;
 
@@ -29,8 +28,8 @@ public class StudentsController {
     private final ActivateStudentUseCase activateStudentUseCase;
 
     @GetMapping
-    public List<Student> listStudents(StudentSpecifications specifications, Sort sort) {
-        return studentService.findAll(specifications, sort);
+    public Page<Student> listStudents(StudentSpecifications specifications, Pageable pageable) {
+        return studentService.findAll(specifications, pageable);
     }
 
     @PostMapping

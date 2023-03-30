@@ -4,13 +4,12 @@ import com.psut.domain.usecase.teacher.CreateTeacherUseCase;
 import com.psut.domain.usecase.teacher.UpdateTeacherUseCase;
 import com.psut.model.teacher.Teacher;
 import com.psut.model.teacher.UpdateTeacherRequest;
-import com.psut.service.TeacherService;
 import com.psut.repository.specification.TeacherSpecifications;
+import com.psut.service.TeacherService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 import static com.psut.controller.TeachersController.TEACHERS_BASE_URL;
 
@@ -25,8 +24,8 @@ public class TeachersController {
     private final UpdateTeacherUseCase updateTeacherUseCase;
 
     @GetMapping
-    public List<Teacher> listTeachers(TeacherSpecifications specifications, Sort sort) {
-        return teacherService.findAll(specifications, sort);
+    public Page<Teacher> listTeachers(TeacherSpecifications specifications, Pageable pageable) {
+        return teacherService.findAll(specifications, pageable);
     }
 
     @PostMapping

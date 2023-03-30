@@ -8,12 +8,12 @@ import com.psut.repository.mapper.StudentMapper;
 import com.psut.repository.specification.StudentSpecifications;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,11 +28,11 @@ public class StudentService {
 
     public List<Student> findAll(Student example) {
         Example<StudentEntity> example1 = Example.of(mapper.toEntity(example));
-        return getDomainListFromEntities(jpaRepository.findAll(example1));
+        return mapper.toDomain(jpaRepository.findAll(example1));
     }
 
-    public List<Student> findAll(StudentSpecifications specifications, Sort sort) {
-        return getDomainListFromEntities(jpaRepository.findAll(specifications, sort));
+    public Page<Student> findAll(StudentSpecifications specifications, Pageable pageable) {
+        return mapper.toDomain(jpaRepository.findAll(specifications, pageable));
     }
 
     @Transactional
@@ -53,9 +53,5 @@ public class StudentService {
     private StudentEntity validateExistence(Long id) {
         return jpaRepository.findById(id)
                 .orElseThrow(RecordNotFoundException::new);
-    }
-
-    private List<Student> getDomainListFromEntities(List<StudentEntity> students) {
-        return students.stream().map(mapper::toDomain).collect(Collectors.toList());
     }
 }

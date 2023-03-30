@@ -11,12 +11,10 @@ import com.psut.repository.entity.TeacherEntity;
 import com.psut.repository.mapper.EvaluationMapper;
 import com.psut.repository.specification.EvaluationSpecifications;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -26,11 +24,8 @@ public class EvaluationService {
     private final JpaTeacherRepository jpaTeacherRepository;
     private final EvaluationMapper mapper;
 
-    public List<Evaluation> findAll(EvaluationSpecifications specifications, Sort sort) {
-        return jpaRepository.findAll(specifications, sort)
-                .stream()
-                .map(mapper::toDomain)
-                .collect(Collectors.toList());
+    public Page<Evaluation> findAll(EvaluationSpecifications specifications, Pageable pageable) {
+        return mapper.toDomain(jpaRepository.findAll(specifications, pageable));
     }
 
     public Evaluation findById(Long id) {

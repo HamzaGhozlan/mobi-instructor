@@ -5,14 +5,12 @@ import com.psut.domain.usecase.evaluation.DeleteEvaluationUseCase;
 import com.psut.domain.usecase.evaluation.UpdateEvaluationUseCase;
 import com.psut.model.evaluation.Evaluation;
 import com.psut.model.evaluation.UpdateEvaluationRequest;
-import com.psut.service.EvaluationService;
 import com.psut.repository.specification.EvaluationSpecifications;
+import com.psut.service.EvaluationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Objects;
 
 import static com.psut.controller.EvaluationsController.EVALUATIONS_BASE_URL;
 
@@ -28,8 +26,8 @@ public class EvaluationsController {
     private final DeleteEvaluationUseCase deleteEvaluationUseCase;
 
     @GetMapping
-    public List<Evaluation> listEvaluations(EvaluationSpecifications specifications, Sort sort){
-        return evaluationService.findAll(specifications, sort);
+    public Page<Evaluation> listEvaluations(EvaluationSpecifications specifications, Pageable pageable) {
+        return evaluationService.findAll(specifications, pageable);
     }
 
     @GetMapping("/{id}")
