@@ -1,17 +1,20 @@
 package com.psut.controller;
 
-import com.psut.domain.usecase.student.ActivateStudentUseCase;
-import com.psut.domain.usecase.student.CreateStudentUseCase;
-import com.psut.domain.usecase.student.DeactivateStudentUseCase;
-import com.psut.domain.usecase.student.UpdateStudentUseCase;
+import com.psut.domain.usecase.student.*;
+import com.psut.domain.usecase.teacher.DeleteStudentImageUseCase;
 import com.psut.model.student.Student;
 import com.psut.model.student.UpdateStudentRequest;
+import com.psut.model.teacher.Teacher;
 import com.psut.repository.specification.StudentSpecifications;
 import com.psut.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
 
 import static com.psut.controller.StudentsController.STUDENTS_BASE_URL;
 
@@ -26,6 +29,8 @@ public class StudentsController {
     private final UpdateStudentUseCase updateStudentUseCase;
     private final DeactivateStudentUseCase deactivateStudentUseCase;
     private final ActivateStudentUseCase activateStudentUseCase;
+    private final UpdateStudentImageUseCase updateStudentImageUseCase;
+    private final DeleteStudentImageUseCase deleteStudentImageUseCase;
 
     @GetMapping
     public Page<Student> listStudents(StudentSpecifications specifications, Pageable pageable) {
@@ -57,13 +62,28 @@ public class StudentsController {
         return activateStudentUseCase.execute(id);
     }
 
+    @PostMapping("/{id}/favorite")
+    public void addTeacherToFavorite(@PathVariable(name = "id") Long studentId, @RequestParam Long teacherId) {
+        studentService.addTeacherToFavorite(studentId, teacherId);
+    }
+
+    @DeleteMapping("/{id}/favorite")
+    public void removeTeacherFromFavorite(@PathVariable(name = "id") Long studentId, @RequestParam Long teacherId) {
+        studentService.removeTeacherFromFavorite(studentId, teacherId);
+    }
+
+    @GetMapping("/{id}/favorite")
+    public List<Teacher> listFavoriteTeachers(@PathVariable Long id) {
+        return studentService.listFavoriteTeachers(id);
+    }
+
     @PostMapping("/{id}/image")
-    public void addImage(@PathVariable Long id, @RequestBody byte[] image) {
-        //TODO: complete implementation
+    public byte[] updateImage(@PathVariable Long id, @RequestBody MultipartFile image) throws IOException {
+        return updateStudentImageUseCase.execute(id, image);
     }
 
     @DeleteMapping("/{id}/image")
     public void deleteImage(@PathVariable Long id) {
-        //TODO: complete implementation
+        deleteStudentImageUseCase.execute(id);
     }
 }

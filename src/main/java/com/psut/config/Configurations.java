@@ -3,12 +3,8 @@ package com.psut.config;
 import com.psut.domain.usecase.evaluation.AddEvaluationUseCase;
 import com.psut.domain.usecase.evaluation.DeleteEvaluationUseCase;
 import com.psut.domain.usecase.evaluation.UpdateEvaluationUseCase;
-import com.psut.domain.usecase.student.ActivateStudentUseCase;
-import com.psut.domain.usecase.student.CreateStudentUseCase;
-import com.psut.domain.usecase.student.DeactivateStudentUseCase;
-import com.psut.domain.usecase.student.UpdateStudentUseCase;
-import com.psut.domain.usecase.teacher.CreateTeacherUseCase;
-import com.psut.domain.usecase.teacher.UpdateTeacherUseCase;
+import com.psut.domain.usecase.student.*;
+import com.psut.domain.usecase.teacher.*;
 import com.psut.domain.validator.*;
 import com.psut.service.EvaluationService;
 import com.psut.service.StudentService;
@@ -70,6 +66,11 @@ public class Configurations implements WebMvcConfigurer {
     }
 
     @Bean
+    public ImageValidator imageValidator() {
+        return new ImageValidator();
+    }
+
+    @Bean
     public CreateTeacherUseCase createTeacherUseCase(TeacherValidator teacherValidator,
                                                      TeacherService teacherService) {
         return new CreateTeacherUseCase(teacherValidator, teacherService);
@@ -109,4 +110,25 @@ public class Configurations implements WebMvcConfigurer {
         return new EvaluationValidator();
     }
 
+    @Bean
+    public UpdateStudentImageUseCase updateStudentImageUseCase(StudentService studentService,
+                                                               ImageValidator imageValidator) {
+        return new UpdateStudentImageUseCase(studentService, imageValidator);
+    }
+
+    @Bean
+    public DeleteStudentImageUseCase deleteStudentImageUseCase(StudentService studentService) {
+        return new DeleteStudentImageUseCase(studentService);
+    }
+
+    @Bean
+    public UpdateTeacherImageUseCase updateTeacherImageUseCase(TeacherService teacherService,
+                                                               ImageValidator imageValidator) {
+        return new UpdateTeacherImageUseCase(teacherService, imageValidator);
+    }
+
+    @Bean
+    public DeleteTeacherImageUseCase deleteTeacherImageUseCase(TeacherService teacherService) {
+        return new DeleteTeacherImageUseCase(teacherService);
+    }
 }

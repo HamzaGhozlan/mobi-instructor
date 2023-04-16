@@ -1,6 +1,8 @@
 package com.psut.controller;
 
 import com.psut.domain.usecase.teacher.CreateTeacherUseCase;
+import com.psut.domain.usecase.teacher.DeleteTeacherImageUseCase;
+import com.psut.domain.usecase.teacher.UpdateTeacherImageUseCase;
 import com.psut.domain.usecase.teacher.UpdateTeacherUseCase;
 import com.psut.model.teacher.Teacher;
 import com.psut.model.teacher.UpdateTeacherRequest;
@@ -10,6 +12,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 import static com.psut.controller.TeachersController.TEACHERS_BASE_URL;
 
@@ -22,6 +27,8 @@ public class TeachersController {
     private final TeacherService teacherService;
     private final CreateTeacherUseCase createTeacherUseCase;
     private final UpdateTeacherUseCase updateTeacherUseCase;
+    private final UpdateTeacherImageUseCase updateTeacherImageUseCase;
+    private final DeleteTeacherImageUseCase deleteTeacherImageUseCase;
 
     @GetMapping
     public Page<Teacher> listTeachers(TeacherSpecifications specifications, Pageable pageable) {
@@ -44,7 +51,17 @@ public class TeachersController {
     }
 
     @PostMapping("/{id}/description")
-    public String setDescription(@PathVariable Long id, @RequestParam String description) {
-        return teacherService.setDescription(id, description);
+    public String updateDescription(@PathVariable Long id, @RequestParam String description) {
+        return teacherService.updateDescription(id, description);
+    }
+
+    @PostMapping("{id}/image")
+    public byte[] updateImage(@PathVariable Long id, @RequestParam MultipartFile image) throws IOException {
+        return updateTeacherImageUseCase.execute(id, image);
+    }
+
+    @DeleteMapping("{id}/image")
+    public void deleteImage(@PathVariable Long id) {
+        deleteTeacherImageUseCase.execute(id);
     }
 }

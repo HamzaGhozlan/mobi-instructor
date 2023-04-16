@@ -20,4 +20,5 @@ public abstract class User {
     @Enumerated(EnumType.STRING)
     private UserStatus status;
     private String email;
+    private byte[] image;
 }

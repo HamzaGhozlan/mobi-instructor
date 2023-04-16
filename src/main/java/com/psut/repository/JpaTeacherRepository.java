@@ -13,5 +13,9 @@ public interface JpaTeacherRepository extends JpaRepository<TeacherEntity, Long>
 
     @Modifying
     @Query("UPDATE #{#entityName} t SET t.description = ?2 WHERE t.id = ?1")
-    String setDescription(Long teacherId, String description);
+    String updateDescription(Long teacherId, String description);
+
+    @Modifying
+    @Query("UPDATE #{#entityName} t SET t.image = ?2 WHERE t.id = ?1")
+    byte[] updateImage(Long teacherId, byte[] image);
 }

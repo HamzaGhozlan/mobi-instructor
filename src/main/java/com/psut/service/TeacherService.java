@@ -55,12 +55,26 @@ public class TeacherService {
         return mapper.toDomain(teacherEntity);
     }
 
-    public String setDescription(Long id, String description) {
-        validateExistence(id);
-        return jpaRepository.setDescription(id, description);
+    public String updateDescription(Long teacherId, String description) {
+        validateExistence(teacherId);
+        return jpaRepository.updateDescription(teacherId, description);
     }
 
-    private TeacherEntity validateExistence(Long id) {
+    public byte[] findImage(Long teacherId) {
+        return validateExistence(teacherId).getImage();
+    }
+
+    public byte[] updateImage(Long teacherId, byte[] image) {
+        validateExistence(teacherId);
+        return jpaRepository.updateImage(teacherId, image);
+    }
+
+    public void deleteImage(Long teacherId) {
+        validateExistence(teacherId);
+        jpaRepository.updateImage(teacherId, new byte[0]);
+    }
+
+    public TeacherEntity validateExistence(Long id) {
         return jpaRepository.findById(id)
                 .orElseThrow(RecordNotFoundException::new);
     }
