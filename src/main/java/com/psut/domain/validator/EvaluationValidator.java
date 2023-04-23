@@ -2,17 +2,14 @@ package com.psut.domain.validator;
 
 import com.psut.model.evaluation.Evaluation;
 
+import java.util.Collections;
 import java.util.Set;
 
-public class EvaluationValidator extends AbstractValidator {
+public class EvaluationValidator {
     public Set<String> validate(Evaluation evaluation) {
-        validateRate(evaluation.getRate());
-        return violations;
-    }
-
-    private void validateRate(int rate) {
-        if (rate <= 0 || rate > 5) {
-            violations.add("invalid.rate");
+        if (evaluation.getRate() <= 0 || evaluation.getRate() > 5) {
+            return Collections.singleton("invalid.rate");
         }
+        return Collections.emptySet();
     }
 }
