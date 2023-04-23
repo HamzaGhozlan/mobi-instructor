@@ -1,7 +1,7 @@
 package com.psut.controller;
 
 import com.psut.domain.usecase.student.*;
-import com.psut.domain.usecase.teacher.DeleteStudentImageUseCase;
+import com.psut.domain.usecase.student.DeleteStudentImageUseCase;
 import com.psut.model.student.Student;
 import com.psut.model.student.UpdateStudentRequest;
 import com.psut.model.teacher.Teacher;

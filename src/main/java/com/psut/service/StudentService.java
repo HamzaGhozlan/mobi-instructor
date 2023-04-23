@@ -91,7 +91,7 @@ public class StudentService {
 
     public void removeImage(Long studentId) {
         validateExistence(studentId);
-        jpaRepository.updateImage(studentId, new byte[0]);
+        jpaRepository.updateImage(studentId, null);
     }
 
     private StudentEntity validateExistence(Long id) {

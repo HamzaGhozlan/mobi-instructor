@@ -71,7 +71,7 @@ public class TeacherService {
 
     public void deleteImage(Long teacherId) {
         validateExistence(teacherId);
-        jpaRepository.updateImage(teacherId, new byte[0]);
+        jpaRepository.updateImage(teacherId, null);
     }
 
     public TeacherEntity validateExistence(Long id) {

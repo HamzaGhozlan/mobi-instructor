@@ -10,7 +10,7 @@ public class DeleteTeacherImageUseCase {
 
     public void execute(Long teacherId) {
         byte[] image = teacherService.findImage(teacherId);
-        if (image == null || image.length == 0) {
+        if (image == null) {
             throw new TechnicalValidationException("teacher.with.passed.id.does.not.have.image");
         }
         teacherService.deleteImage(teacherId);

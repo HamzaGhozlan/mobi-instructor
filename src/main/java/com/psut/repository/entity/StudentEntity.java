@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "student")
 public class StudentEntity extends User {
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "student_favorite_teacher",
             joinColumns = {@JoinColumn(name = "student_id")},

@@ -1,4 +1,4 @@
-package com.psut.domain.usecase.teacher;
+package com.psut.domain.usecase.student;
 
 import com.psut.exception.TechnicalValidationException;
 import com.psut.service.StudentService;
@@ -10,7 +10,7 @@ public class DeleteStudentImageUseCase {
 
     public void execute(Long studentId) {
         byte[] image = studentService.findImage(studentId);
-        if (image == null || image.length == 0) {
+        if (image == null) {
             throw new TechnicalValidationException("student.with.passed.id.does.not.have.image");
         }
         studentService.removeImage(studentId);
