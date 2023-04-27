@@ -20,6 +20,10 @@ public class AddEvaluationUseCase {
 
     private void validate(Evaluation evaluation) {
         Set<String> violations = evaluationValidator.validate(evaluation);
+
+        service.findByTeacherAndStudent(evaluation.getTeacherId(), evaluation.getStudentId())
+                .ifPresent(record -> violations.add("student.already.evaluated.this.teacher"));
+
         if (!violations.isEmpty()) {
             throw new BusinessValidationException(violations);
         }

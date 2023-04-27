@@ -1,7 +1,6 @@
 package com.psut.config;
 
 import com.psut.domain.usecase.evaluation.AddEvaluationUseCase;
-import com.psut.domain.usecase.evaluation.DeleteEvaluationUseCase;
 import com.psut.domain.usecase.evaluation.UpdateEvaluationUseCase;
 import com.psut.domain.usecase.student.*;
 import com.psut.domain.usecase.teacher.*;

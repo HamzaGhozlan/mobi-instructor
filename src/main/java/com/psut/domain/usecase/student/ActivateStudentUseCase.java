@@ -18,7 +18,7 @@ public class ActivateStudentUseCase {
     }
 
     private void validate(Student student) {
-        if (UserStatus.ACTIVE.equals(student.getStatus())) {
+        if (UserStatus.ACTIVE == student.getStatus()) {
             throw new TechnicalValidationException("student.is.already.active");
         }
     }

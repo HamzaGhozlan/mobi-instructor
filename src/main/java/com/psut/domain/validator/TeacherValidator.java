@@ -51,8 +51,8 @@ public class TeacherValidator {
         }
         for (Material material : materials) {
             boolean isValidMaterial = !StringUtils.isBlank(material.getTitle())
-                    && !material.getStages().isEmpty()
                     && Objects.nonNull(material.getStages())
+                    && !material.getStages().isEmpty()
                     && Objects.nonNull(material.getCategory())
                     && (Objects.nonNull(material.getPricePerHour()) || Objects.nonNull(material.getPricePerCourse()));
             if (!isValidMaterial)

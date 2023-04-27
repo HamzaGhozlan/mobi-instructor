@@ -18,7 +18,7 @@ public class DeactivateStudentUseCase {
     }
 
     private void validate(Student student) {
-        if (UserStatus.DEACTIVATED.equals(student.getStatus())) {
+        if (UserStatus.DEACTIVATED == student.getStatus()) {
             throw new TechnicalValidationException("student.is.already.deactivated");
         }
     }

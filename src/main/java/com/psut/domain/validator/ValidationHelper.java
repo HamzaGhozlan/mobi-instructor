@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public class ValidationHelper {
-    private Set<String> violations = new HashSet();
+    private final Set<String> violations = new HashSet<>();
 
     public ValidationHelper validateNotNull(Object object, String fieldName) {
         if (Objects.isNull(object)) {

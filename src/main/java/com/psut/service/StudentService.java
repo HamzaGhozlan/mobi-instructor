@@ -94,7 +94,7 @@ public class StudentService {
         jpaRepository.updateImage(studentId, null);
     }
 
-    private StudentEntity validateExistence(Long id) {
+    public StudentEntity validateExistence(Long id) {
         return jpaRepository.findById(id)
                 .orElseThrow(RecordNotFoundException::new);
     }

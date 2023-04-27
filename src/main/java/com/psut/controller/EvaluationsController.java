@@ -1,7 +1,6 @@
 package com.psut.controller;
 
 import com.psut.domain.usecase.evaluation.AddEvaluationUseCase;
-import com.psut.domain.usecase.evaluation.DeleteEvaluationUseCase;
 import com.psut.domain.usecase.evaluation.UpdateEvaluationUseCase;
 import com.psut.model.evaluation.Evaluation;
 import com.psut.model.evaluation.UpdateEvaluationRequest;
@@ -23,7 +22,6 @@ public class EvaluationsController {
     private final EvaluationService evaluationService;
     private final AddEvaluationUseCase addEvaluationUseCase;
     private final UpdateEvaluationUseCase updateEvaluationUseCase;
-    private final DeleteEvaluationUseCase deleteEvaluationUseCase;
 
     @GetMapping
     public Page<Evaluation> listEvaluations(EvaluationSpecifications specifications, Pageable pageable) {
@@ -48,6 +46,6 @@ public class EvaluationsController {
 
     @DeleteMapping("/{id}")
     public void removeEvaluation(@PathVariable Long id) {
-        deleteEvaluationUseCase.execute(id);
+        evaluationService.delete(id);
     }
 }

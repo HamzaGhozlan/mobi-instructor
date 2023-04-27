@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface JpaTeacherRepository extends JpaRepository<TeacherEntity, Long>, JpaSpecificationExecutor<TeacherEntity> {
     @Modifying
     @Query("UPDATE #{#entityName} t SET t.rateAvg = ?2 WHERE t.id = ?1")
-    Double updateTeacherRateAvg(Long teacherId, Double rateAvg);
+    void updateTeacherRateAvg(Long teacherId, Double rateAvg);
 
     @Modifying
     @Query("UPDATE #{#entityName} t SET t.description = ?2 WHERE t.id = ?1")

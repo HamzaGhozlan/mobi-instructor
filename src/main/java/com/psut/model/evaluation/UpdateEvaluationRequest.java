@@ -1,6 +1,5 @@
 package com.psut.model.evaluation;
 
-import com.psut.model.evaluation.Evaluation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
