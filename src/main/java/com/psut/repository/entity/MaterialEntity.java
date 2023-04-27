@@ -18,6 +18,8 @@ public class MaterialEntity {
     private Category category;
     private String title;
     @ElementCollection
+    @CollectionTable(name = "material_stages", joinColumns = @JoinColumn(name = "material_id"))
+    @Column(name = "stage")
     private List<String> stages;
     @Column(name = "price_per_hour")
     private BigDecimal pricePerHour;

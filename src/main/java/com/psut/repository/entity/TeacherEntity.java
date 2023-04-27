@@ -16,14 +16,18 @@ public class TeacherEntity extends User {
     @Column(name = "phone_number")
     private String phoneNumber;
     private String city;
+
     @ElementCollection(targetClass = Gender.class)
+    @CollectionTable(name = "teacher_targeted_students", joinColumns = @JoinColumn(name = "teacher_id"))
     @Enumerated(EnumType.STRING)
-    @Column(name = "targeted_students")
+    @Column(name = "targeted_student")
     private List<Gender> targetedStudents;
+
     @ElementCollection(targetClass = TeachingWay.class)
+    @CollectionTable(name = "teacher_teaching_way", joinColumns = @JoinColumn(name = "teacher_id"))
     @Enumerated(EnumType.STRING)
     @Column(name = "teaching_way")
-    private List<TeachingWay> teachingWay;
+    private List<TeachingWay> teachingWays;
 
     @Column(name = "rate_avg")
     private Double rateAvg;
