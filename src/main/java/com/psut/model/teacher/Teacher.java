@@ -13,7 +13,7 @@ public class Teacher extends User {
     private String phoneNumber;
     private String city;
     private List<Gender> targetedStudents;
-    private List<TeachingWay> teachingWay;
+    private List<TeachingWay> teachingWays;
     private Double rateAvg;
 
     private List<Material> materials;

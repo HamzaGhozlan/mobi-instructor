@@ -30,7 +30,7 @@ public class UpdateTeacherRequest {
         teacher.setPhoneNumber(phoneNumber);
         teacher.setCity(city);
         teacher.setTargetedStudents(targetedStudents);
-        teacher.setTeachingWay(teachingWay);
+        teacher.setTeachingWays(teachingWay);
         teacher.setMaterials(materials);
         return teacher;
     }

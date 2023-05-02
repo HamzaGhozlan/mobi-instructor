@@ -71,7 +71,7 @@ class UpdateTeacherUseCaseTest {
         teacher.setPhoneNumber("0790000000");
         teacher.setEmail("email@gmail.com");
         teacher.setCity("city");
-        teacher.setTeachingWay(Collections.singletonList(TeachingWay.ONLINE));
+        teacher.setTeachingWays(Collections.singletonList(TeachingWay.ONLINE));
         teacher.setTargetedStudents(Collections.singletonList(Gender.MALE));
         return teacher;
     }

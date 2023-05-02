@@ -21,7 +21,7 @@ public class TeacherValidator {
                 .validateNotBlank(teacher.getLastName(), "last.name")
                 .validateNotBlank(teacher.getCity(), "city")
                 .validateNotBlank(teacher.getPhoneNumber(), "phone.number")
-                .validateNonEmptyList(teacher.getTeachingWay(), "teaching.ways")
+                .validateNonEmptyList(teacher.getTeachingWays(), "teaching.ways")
                 .validateNonEmptyList(teacher.getTargetedStudents(), "targeted.students")
                 .getViolations();
 

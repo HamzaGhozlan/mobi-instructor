@@ -13,7 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -33,9 +33,9 @@ public class EvaluationService {
         return mapper.toDomain(evaluationEntity);
     }
 
-    public Optional<Evaluation> findByTeacherAndStudent(Long teacherId, Long studentId) {
-        EvaluationEntity evaluationEntity = jpaRepository.findByTeacherIdAndStudentId(teacherId, studentId);
-        return Optional.of(mapper.toDomain(evaluationEntity));
+    public boolean evaluationExist(Long teacherId, Long studentId) {
+        EvaluationEntity evaluation = jpaRepository.findByTeacherIdAndStudentId(teacherId, studentId);
+        return Objects.nonNull(evaluation);
     }
 
     @Transactional
