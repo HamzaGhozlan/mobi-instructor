@@ -56,22 +56,10 @@ public class StudentService {
         return mapper.toDomain(studentEntity);
     }
 
-    public void addTeacherToFavorite(Long studentId, Long teacherId) {
-        TeacherEntity teacher = teacherService.validateExistence(teacherId);
-        StudentEntity student = this.validateExistence(studentId);
-        student.getFavoriteTeachers().add(teacher);
-        jpaRepository.save(student);
-    }
-
-    public void removeTeacherFromFavorite(Long studentId, Long teacherId) {
-        StudentEntity student = this.validateExistence(studentId);
-
-        List<TeacherEntity> newFavoriteList = student.getFavoriteTeachers()
-                .stream()
-                .filter(teacher -> !teacher.getId().equals(teacherId))
-                .collect(Collectors.toList());
-        student.setFavoriteTeachers(newFavoriteList);
-
+    public void updateFavoriteTeachers(Long studentId, List<Long> teachersIds) {
+        StudentEntity student = validateExistence(studentId);
+        List<TeacherEntity> favoriteList = teacherService.listTeachers(teachersIds);
+        student.setFavoriteTeachers(favoriteList);
         jpaRepository.save(student);
     }
 

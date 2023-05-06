@@ -30,6 +30,8 @@ public class StudentsController {
     private final ActivateStudentUseCase activateStudentUseCase;
     private final UpdateStudentImageUseCase updateStudentImageUseCase;
     private final DeleteStudentImageUseCase deleteStudentImageUseCase;
+    private final AddTeacherToFavoriteUseCase addTeacherToFavoriteUseCase;
+    private final RemoveTeacherFromFavoriteUseCase removeTeacherFromFavoriteUseCase;
 
     @GetMapping
     public Page<Student> listStudents(StudentSpecifications specifications, Pageable pageable) {
@@ -63,12 +65,12 @@ public class StudentsController {
 
     @PostMapping("/{id}/favorite")
     public void addTeacherToFavorite(@PathVariable(name = "id") Long studentId, @RequestParam Long teacherId) {
-        studentService.addTeacherToFavorite(studentId, teacherId);
+        addTeacherToFavoriteUseCase.execute(studentId, teacherId);
     }
 
     @DeleteMapping("/{id}/favorite")
     public void removeTeacherFromFavorite(@PathVariable(name = "id") Long studentId, @RequestParam Long teacherId) {
-        studentService.removeTeacherFromFavorite(studentId, teacherId);
+        removeTeacherFromFavoriteUseCase.execute(studentId, teacherId);
     }
 
     @GetMapping("/{id}/favorite")

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -77,5 +78,11 @@ public class TeacherService {
     public TeacherEntity validateExistence(Long id) {
         return jpaRepository.findById(id)
                 .orElseThrow(RecordNotFoundException::new);
+    }
+
+    public List<TeacherEntity> listTeachers(List<Long> teachersIds) {
+        return teachersIds.stream()
+                .map(this::validateExistence)
+                .collect(Collectors.toList());
     }
 }

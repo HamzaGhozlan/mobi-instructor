@@ -128,4 +128,14 @@ public class Configurations implements WebMvcConfigurer {
     public DeleteTeacherImageUseCase deleteTeacherImageUseCase(TeacherService teacherService) {
         return new DeleteTeacherImageUseCase(teacherService);
     }
+
+    @Bean
+    public AddTeacherToFavoriteUseCase addTeacherToFavoriteUseCase(StudentService studentService) {
+        return new AddTeacherToFavoriteUseCase(studentService);
+    }
+
+    @Bean
+    public RemoveTeacherFromFavoriteUseCase removeTeacherFromFavoriteUseCase(StudentService studentService) {
+        return new RemoveTeacherFromFavoriteUseCase(studentService);
+    }
 }
