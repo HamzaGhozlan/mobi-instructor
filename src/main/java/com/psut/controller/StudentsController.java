@@ -59,7 +59,7 @@ public class StudentsController {
     }
 
     @PostMapping("/{id}/activate")
-    public Student ActivateStudent(@PathVariable Long id) {
+    public Student activateStudent(@PathVariable Long id) {
         return activateStudentUseCase.execute(id);
     }
 
