@@ -55,12 +55,12 @@ public class TeachersController {
         return teacherService.updateDescription(id, description);
     }
 
-    @PostMapping("{id}/image")
+    @PostMapping("/{id}/image")
     public byte[] updateImage(@PathVariable Long id, @RequestParam MultipartFile image) throws IOException {
         return updateTeacherImageUseCase.execute(id, image);
     }
 
-    @DeleteMapping("{id}/image")
+    @DeleteMapping("/{id}/image")
     public void deleteImage(@PathVariable Long id) {
         deleteTeacherImageUseCase.execute(id);
     }
