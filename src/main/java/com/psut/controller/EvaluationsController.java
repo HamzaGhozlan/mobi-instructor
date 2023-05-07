@@ -17,7 +17,7 @@ import static com.psut.controller.EvaluationsController.EVALUATIONS_BASE_URL;
 @RestController
 @RequestMapping(EVALUATIONS_BASE_URL)
 public class EvaluationsController {
-    public static final String EVALUATIONS_BASE_URL = "api/v1/evaluations";
+    public static final String EVALUATIONS_BASE_URL = "/api/v1/evaluations";
 
     private final EvaluationService evaluationService;
     private final AddEvaluationUseCase addEvaluationUseCase;
