@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +29,11 @@ public class StudentService {
     public Student findById(Long id) {
         StudentEntity studentEntity = validateExistence(id);
         return mapper.toDomain(studentEntity);
+    }
+
+    public Student findByUsernameAndPassword(String username, String password) {
+        StudentEntity student = jpaRepository.findByUsernameAndPassword(username, password);
+        return mapper.toDomain(student);
     }
 
     public List<Student> findAll(Student example) {

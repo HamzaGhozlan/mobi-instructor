@@ -27,6 +27,11 @@ public class TeacherService {
         return mapper.toDomain(teacherEntity);
     }
 
+    public Teacher findByUsernameAndPassword(String username, String password) {
+        TeacherEntity teacher = jpaRepository.findByUsernameAndPassword(username, password);
+        return mapper.toDomain(teacher);
+    }
+
     public List<Teacher> findAll(Teacher example) {
         Example<TeacherEntity> example1 = Example.of(mapper.toEntity(example));
         List<TeacherEntity> teachers = jpaRepository.findAll(example1);

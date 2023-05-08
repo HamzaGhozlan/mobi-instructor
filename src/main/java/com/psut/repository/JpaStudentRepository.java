@@ -10,4 +10,6 @@ public interface JpaStudentRepository extends JpaRepository<StudentEntity, Long>
     @Modifying
     @Query("UPDATE #{#entityName} t SET t.image = ?2 WHERE t.id = ?1")
     byte[] updateImage(Long studentId, byte[] image);
+
+    StudentEntity findByUsernameAndPassword(String username, String password);
 }
