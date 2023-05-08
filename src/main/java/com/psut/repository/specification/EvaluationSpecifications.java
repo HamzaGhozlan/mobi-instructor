@@ -8,7 +8,8 @@ import org.springframework.data.jpa.domain.Specification;
 
 @And({
         @Spec(params = "teacherId", path = "teacher.id", spec = Equal.class),
-        @Spec(params = "rate", path = "rate", spec = Equal.class)
+        @Spec(params = "rate", path = "rate", spec = Equal.class),
+        @Spec(params = "studentId", path = "student.id", spec = Equal.class)
 })
 public interface EvaluationSpecifications extends Specification<EvaluationEntity> {
 }
