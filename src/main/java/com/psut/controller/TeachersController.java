@@ -1,9 +1,6 @@
 package com.psut.controller;
 
-import com.psut.domain.usecase.teacher.CreateTeacherUseCase;
-import com.psut.domain.usecase.teacher.DeleteTeacherImageUseCase;
-import com.psut.domain.usecase.teacher.UpdateTeacherImageUseCase;
-import com.psut.domain.usecase.teacher.UpdateTeacherUseCase;
+import com.psut.domain.usecase.teacher.*;
 import com.psut.model.teacher.Teacher;
 import com.psut.model.teacher.UpdateTeacherRequest;
 import com.psut.repository.specification.TeacherSpecifications;
@@ -29,6 +26,8 @@ public class TeachersController {
     private final UpdateTeacherUseCase updateTeacherUseCase;
     private final UpdateTeacherImageUseCase updateTeacherImageUseCase;
     private final DeleteTeacherImageUseCase deleteTeacherImageUseCase;
+    private final ActivateTeacherUseCase activateTeacherUseCase;
+    private final DeactivateTeacherUseCase deactivateTeacherUseCase;
 
     @GetMapping
     public Page<Teacher> listTeachers(TeacherSpecifications specifications, Pageable pageable) {
@@ -63,5 +62,15 @@ public class TeachersController {
     @DeleteMapping("/{id}/image")
     public void deleteImage(@PathVariable Long id) {
         deleteTeacherImageUseCase.execute(id);
+    }
+
+    @PostMapping("/{id}/activate")
+    Teacher activateTeacher(@PathVariable Long id) {
+        return activateTeacherUseCase.execute(id);
+    }
+
+    @PostMapping("/{id}/deactivate")
+    Teacher deactivateTeacher(@PathVariable Long id) {
+        return deactivateTeacherUseCase.execute(id);
     }
 }

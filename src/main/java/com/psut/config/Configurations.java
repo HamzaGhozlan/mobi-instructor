@@ -3,10 +3,7 @@ package com.psut.config;
 import com.psut.domain.usecase.evaluation.AddEvaluationUseCase;
 import com.psut.domain.usecase.evaluation.UpdateEvaluationUseCase;
 import com.psut.domain.usecase.student.*;
-import com.psut.domain.usecase.teacher.CreateTeacherUseCase;
-import com.psut.domain.usecase.teacher.DeleteTeacherImageUseCase;
-import com.psut.domain.usecase.teacher.UpdateTeacherImageUseCase;
-import com.psut.domain.usecase.teacher.UpdateTeacherUseCase;
+import com.psut.domain.usecase.teacher.*;
 import com.psut.domain.validator.*;
 import com.psut.service.EvaluationService;
 import com.psut.service.StudentService;
@@ -137,5 +134,15 @@ public class Configurations implements WebMvcConfigurer {
     @Bean
     public RemoveTeacherFromFavoriteUseCase removeTeacherFromFavoriteUseCase(StudentService studentService) {
         return new RemoveTeacherFromFavoriteUseCase(studentService);
+    }
+
+    @Bean
+    public ActivateTeacherUseCase activateTeacherUseCase(TeacherService teacherService) {
+        return new ActivateTeacherUseCase(teacherService);
+    }
+
+    @Bean
+    public DeactivateTeacherUseCase deactivateTeacherUseCase(TeacherService teacherService) {
+        return new DeactivateTeacherUseCase(teacherService);
     }
 }
