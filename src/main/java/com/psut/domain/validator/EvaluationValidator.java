@@ -1,18 +1,25 @@
 package com.psut.domain.validator;
 
 import com.psut.model.evaluation.Evaluation;
+import lombok.RequiredArgsConstructor;
 
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
+@RequiredArgsConstructor
 public class EvaluationValidator {
-    private static final int MIN_RATE = 1;
-    private static final int MAX_RATE = 5;
+    private static final double MIN_RATE = 1.0;
+    private static final double MAX_RATE = 5.0;
 
     public Set<String> validate(Evaluation evaluation) {
+        Set<String> violations = new HashSet<>();
+        validateRate(evaluation, violations);
+        return violations;
+    }
+
+    private void validateRate(Evaluation evaluation, Set<String> violations) {
         if (evaluation.getRate() < MIN_RATE || evaluation.getRate() > MAX_RATE) {
-            return Collections.singleton("invalid.rate");
+            violations.add("invalid.rate");
         }
-        return Collections.emptySet();
     }
 }

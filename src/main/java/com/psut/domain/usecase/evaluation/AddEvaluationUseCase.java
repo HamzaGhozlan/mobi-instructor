@@ -20,14 +20,16 @@ public class AddEvaluationUseCase {
 
     private void validate(Evaluation evaluation) {
         Set<String> violations = evaluationValidator.validate(evaluation);
+        validateRedundancy(evaluation, violations);
+        if (!violations.isEmpty()) {
+            throw new BusinessValidationException(violations);
+        }
+    }
 
+    private void validateRedundancy(Evaluation evaluation, Set<String> violations) {
         boolean exist = service.evaluationExist(evaluation.getTeacherId(), evaluation.getStudentId());
         if (exist) {
             violations.add("student.already.evaluated.this.teacher");
-        }
-
-        if (!violations.isEmpty()) {
-            throw new BusinessValidationException(violations);
         }
     }
 }

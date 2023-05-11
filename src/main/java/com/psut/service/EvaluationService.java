@@ -41,8 +41,8 @@ public class EvaluationService {
     @Transactional
     public Evaluation save(Evaluation evaluation) {
         EvaluationEntity evaluationEntity = mapper.toEntity(evaluation);
-        evaluationEntity.setStudent(studentService.validateExistence(evaluation.getTeacherId()));
-        evaluationEntity.setTeacher(teacherService.validateExistence(evaluation.getStudentId()));
+        evaluationEntity.setStudent(studentService.validateExistence(evaluation.getStudentId()));
+        evaluationEntity.setTeacher(teacherService.validateExistence(evaluation.getTeacherId()));
 
         evaluationEntity = jpaRepository.save(evaluationEntity);
         Evaluation savedEvaluation = mapper.toDomain(evaluationEntity);
