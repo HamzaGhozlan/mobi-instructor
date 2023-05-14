@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -34,8 +35,10 @@ class ActivateStudentUseCaseTest {
     @Test
     void givenDeactivatedStudent_whenExecute_thenShouldUpdateWithActiveStatus() {
         when(service.findById(1L)).thenReturn(DEACTIVATED_STUDENT);
-        useCase.execute(1L);
+        when(service.update(DEACTIVATED_STUDENT)).thenReturn(ACTIVE_STUDENT);
+        Student student = useCase.execute(1L);
         verify(service).update(ACTIVE_STUDENT);
+        assertEquals(ACTIVE_STUDENT, student);
     }
 
     @Test

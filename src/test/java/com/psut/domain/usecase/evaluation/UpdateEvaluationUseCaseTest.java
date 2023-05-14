@@ -20,8 +20,6 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class UpdateEvaluationUseCaseTest {
-    private static final Evaluation EVALUATION = new Evaluation();
-
     @Mock
     private EvaluationValidator evaluationValidator;
     @Mock
@@ -59,7 +57,7 @@ class UpdateEvaluationUseCaseTest {
                 .build();
     }
 
-    private UpdateEvaluationRequest getUpdateRequest(){
+    private UpdateEvaluationRequest getUpdateRequest() {
         return UpdateEvaluationRequest.builder()
                 .review("updateMsg")
                 .rate(5)
