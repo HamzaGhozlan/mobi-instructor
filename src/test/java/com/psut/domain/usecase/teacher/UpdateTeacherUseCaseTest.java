@@ -41,7 +41,7 @@ class UpdateTeacherUseCaseTest {
                 .phoneNumber("updatedPhoneNumber")
                 .email("updatedEmail")
                 .city("updatedCity")
-                .teachingWay(List.of(TeachingWay.ONSITE, TeachingWay.ONLINE))
+                .teachingWays(List.of(TeachingWay.ONSITE, TeachingWay.ONLINE))
                 .targetedStudents(List.of(Gender.FEMALE, Gender.MALE))
                 .build();
         Teacher updatedTeacher = updateRequest.applyUpdatesOn(getTeacher());

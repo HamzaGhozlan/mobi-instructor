@@ -18,7 +18,7 @@ public class UpdateTeacherRequest {
     private String phoneNumber;
     private String city;
     private List<Gender> targetedStudents;
-    private List<TeachingWay> teachingWay;
+    private List<TeachingWay> teachingWays;
     private List<Material> materials;
 
     public Teacher applyUpdatesOn(Teacher teacher) {
@@ -30,7 +30,7 @@ public class UpdateTeacherRequest {
         teacher.setPhoneNumber(phoneNumber);
         teacher.setCity(city);
         teacher.setTargetedStudents(targetedStudents);
-        teacher.setTeachingWays(teachingWay);
+        teacher.setTeachingWays(teachingWays);
         teacher.setMaterials(materials);
         return teacher;
     }
