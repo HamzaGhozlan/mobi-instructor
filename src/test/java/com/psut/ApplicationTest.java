@@ -2,7 +2,7 @@ package com.psut;
 
 import org.junit.jupiter.api.Test;
 
-class ServiceTest {
+class ApplicationTest {
 
     @Test
     void contextLoads() {
