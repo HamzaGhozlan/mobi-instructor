@@ -145,4 +145,5 @@ public class Configurations implements WebMvcConfigurer {
     public DeactivateTeacherUseCase deactivateTeacherUseCase(TeacherService teacherService) {
         return new DeactivateTeacherUseCase(teacherService);
     }
+
 }
