@@ -1,7 +1,6 @@
 package com.psut.exception.handler;
 
 import com.psut.exception.BusinessValidationException;
-import com.psut.exception.model.ExceptionInfo;
 import com.psut.exception.RecordNotFoundException;
 import com.psut.exception.TechnicalValidationException;
 import org.springframework.http.HttpStatus;
@@ -34,7 +33,7 @@ public class ExceptionsHandler {
 
     private static ResponseEntity<Object> handleException(RuntimeException ex, HttpStatus httpStatus) {
         ExceptionInfo exceptionInfo = new ExceptionInfo(
-                Optional.ofNullable(ex.getMessage()).orElse("error"),
+                Optional.ofNullable(ex.getMessage()).orElse(ex.getClass().getSimpleName()),
                 httpStatus,
                 ZonedDateTime.now(ZoneId.of("Z"))
         );

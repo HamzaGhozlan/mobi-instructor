@@ -1,4 +1,4 @@
-package com.psut.exception.model;
+package com.psut.exception.handler;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
