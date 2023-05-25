@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Objects;
-
 import static com.psut.controller.LoginController.LOGIN_BASE_URL;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.OK;
 
 @RequiredArgsConstructor
 @RequestMapping(LOGIN_BASE_URL)
@@ -37,6 +37,6 @@ public class LoginController {
     }
 
     private HttpStatus getStatus(Object obj) {
-        return Objects.nonNull(obj) ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        return obj == null ? NOT_FOUND : OK;
     }
 }

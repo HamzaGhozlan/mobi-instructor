@@ -13,8 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Objects;
-
 @Service
 @RequiredArgsConstructor
 public class EvaluationService {
@@ -35,7 +33,7 @@ public class EvaluationService {
 
     public boolean evaluationExist(Long teacherId, Long studentId) {
         EvaluationEntity evaluation = jpaRepository.findByTeacherIdAndStudentId(teacherId, studentId);
-        return Objects.nonNull(evaluation);
+        return evaluation != null;
     }
 
     @Transactional

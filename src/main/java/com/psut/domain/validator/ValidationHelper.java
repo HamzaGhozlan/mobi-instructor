@@ -4,14 +4,13 @@ import io.micrometer.common.util.StringUtils;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 public class ValidationHelper {
     private final Set<String> violations = new HashSet<>();
 
     public ValidationHelper validateNotNull(Object object, String fieldName) {
-        if (Objects.isNull(object)) {
+        if (object == null) {
             violations.add("invalid." + fieldName);
         }
         return this;
@@ -25,7 +24,7 @@ public class ValidationHelper {
     }
 
     public ValidationHelper validateNonEmptyList(List<?> list, String fieldName) {
-        if (Objects.isNull(list) || list.isEmpty()) {
+        if (list == null || list.isEmpty()) {
             violations.add("invalid." + fieldName);
         }
         return this;

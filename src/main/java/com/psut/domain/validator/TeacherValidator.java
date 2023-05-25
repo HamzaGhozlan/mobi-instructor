@@ -6,7 +6,6 @@ import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 @RequiredArgsConstructor
@@ -46,15 +45,15 @@ public class TeacherValidator {
     }
 
     private boolean validMaterials(List<Material> materials) {
-        if (Objects.isNull(materials) || materials.isEmpty()) {
+        if (materials == null || materials.isEmpty()) {
             return false;
         }
         for (Material material : materials) {
             boolean isValidMaterial = !StringUtils.isBlank(material.getTitle())
-                    && Objects.nonNull(material.getStages())
+                    && material.getStages() != null
+                    && material.getCategory() != null
                     && !material.getStages().isEmpty()
-                    && Objects.nonNull(material.getCategory())
-                    && (Objects.nonNull(material.getPricePerHour()) || Objects.nonNull(material.getPricePerCourse()));
+                    && (material.getPricePerHour() != null || material.getPricePerCourse() != null);
             if (!isValidMaterial)
                 return false;
         }

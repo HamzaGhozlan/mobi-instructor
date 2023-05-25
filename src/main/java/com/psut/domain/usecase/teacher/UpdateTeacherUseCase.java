@@ -7,7 +7,6 @@ import com.psut.model.teacher.UpdateTeacherRequest;
 import com.psut.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Objects;
 import java.util.Set;
 
 @RequiredArgsConstructor
@@ -24,7 +23,7 @@ public class UpdateTeacherUseCase {
 
     private void validate(Teacher teacher) {
         Set<String> violations = teacherValidator.validate(teacher);
-        if(Objects.nonNull(violations) && !violations.isEmpty()){
+        if (violations != null && !violations.isEmpty()) {
             throw new BusinessValidationException(violations);
         }
     }
