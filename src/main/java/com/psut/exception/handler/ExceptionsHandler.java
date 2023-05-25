@@ -12,7 +12,6 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 
-
 @ControllerAdvice
 public class ExceptionsHandler {
 
