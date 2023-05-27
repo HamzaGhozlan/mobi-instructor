@@ -3,6 +3,8 @@ package com.psut.exception.handler;
 import com.psut.exception.BusinessValidationException;
 import com.psut.exception.RecordNotFoundException;
 import com.psut.exception.TechnicalValidationException;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -37,5 +39,13 @@ public class ExceptionsHandler {
                 ZonedDateTime.now(ZoneId.of("Z"))
         );
         return new ResponseEntity<>(exceptionInfo, httpStatus);
+    }
+
+    @Getter
+    @RequiredArgsConstructor
+    public static class ExceptionInfo {
+        private final String message;
+        private final HttpStatus httpStatus;
+        private final ZonedDateTime timeStamp;
     }
 }

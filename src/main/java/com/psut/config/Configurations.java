@@ -61,8 +61,9 @@ public class Configurations implements WebMvcConfigurer {
 
     @Bean
     public CreateStudentUseCase createStudentUseCase(StudentService studentService,
-                                                     StudentValidator studentValidator) {
-        return new CreateStudentUseCase(studentValidator, studentService);
+                                                     StudentValidator studentValidator,
+                                                     PasswordEncoder passwordEncoder) {
+        return new CreateStudentUseCase(studentValidator, studentService, passwordEncoder);
     }
 
     @Bean
@@ -105,8 +106,9 @@ public class Configurations implements WebMvcConfigurer {
 
     @Bean
     public CreateTeacherUseCase createTeacherUseCase(TeacherValidator teacherValidator,
-                                                     TeacherService teacherService) {
-        return new CreateTeacherUseCase(teacherValidator, teacherService);
+                                                     TeacherService teacherService,
+                                                     PasswordEncoder passwordEncoder) {
+        return new CreateTeacherUseCase(teacherValidator, teacherService, passwordEncoder);
     }
 
     @Bean

@@ -2,16 +2,14 @@ package com.psut.security;
 
 import com.psut.domain.usecase.student.CreateStudentUseCase;
 import com.psut.model.student.Student;
+import com.psut.model.teacher.Teacher;
 import com.psut.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -19,21 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final AuthenticationService authenticationService;
     private final StudentService studentService;
-    private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-    private final CreateStudentUseCase createStudentUseCase;
 
-    @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestParam String username,
-                                           @RequestParam String password) {
-        Student student = new Student();
-        student.setUsername(username);
-        student.setPassword(passwordEncoder.encode(password));
-        student.setRole(Role.STUDENT);
-        studentService.save(student);
+    @PostMapping("/register/student")
+    public ResponseEntity<String> register(@RequestBody Student student) {
         return ResponseEntity.ok(
-                jwtService.generateToken(student)
+                authenticationService.registerStudent(student)
+        );
+    }
+
+    @PostMapping("/register/teacher")
+    public ResponseEntity<String> register(@RequestBody Teacher teacher) {
+        return ResponseEntity.ok(
+                authenticationService.registerTeacher(teacher)
         );
     }
 

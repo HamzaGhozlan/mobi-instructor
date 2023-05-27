@@ -1,6 +1,6 @@
 package com.psut.repository.entity;
 
-import com.psut.model.Category;
+import com.psut.model.teacher.Category;
 import jakarta.persistence.*;
 import lombok.Data;
 

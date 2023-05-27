@@ -1,6 +1,6 @@
 package com.psut.repository.mapper;
 
-import com.psut.model.Material;
+import com.psut.model.teacher.Material;
 import com.psut.repository.entity.MaterialEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

@@ -1,6 +1,5 @@
 package com.psut.model.shared;
 
-import com.psut.security.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -29,11 +28,11 @@ public abstract class User implements UserDetails {
     private String email;
     private byte[] image;
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private UserRole userRole;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name().toLowerCase()));
+        return List.of(new SimpleGrantedAuthority(userRole.name().toLowerCase()));
     }
 
     @Override

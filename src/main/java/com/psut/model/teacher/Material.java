@@ -1,6 +1,5 @@
-package com.psut.model;
+package com.psut.model.teacher;
 
-import com.psut.model.teacher.Teacher;
 import lombok.Data;
 
 import java.math.BigDecimal;

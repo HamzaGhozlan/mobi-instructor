@@ -1,6 +1,5 @@
 package com.psut.model.teacher;
 
-import com.psut.model.Material;
 import com.psut.model.shared.Gender;
 import lombok.Builder;
 import lombok.Data;

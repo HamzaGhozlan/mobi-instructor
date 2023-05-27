@@ -1,6 +1,6 @@
 package com.psut.domain.validator;
 
-import com.psut.model.Material;
+import com.psut.model.teacher.Material;
 import com.psut.model.teacher.Teacher;
 import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;

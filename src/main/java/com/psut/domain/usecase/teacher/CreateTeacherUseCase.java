@@ -6,6 +6,7 @@ import com.psut.model.shared.UserStatus;
 import com.psut.model.teacher.Teacher;
 import com.psut.service.TeacherService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Set;
 
@@ -13,10 +14,12 @@ import java.util.Set;
 public class CreateTeacherUseCase {
     private final TeacherValidator teacherValidator;
     private final TeacherService teacherService;
+    private final PasswordEncoder passwordEncoder;
 
     public Teacher execute(Teacher teacher) {
         validate(teacher);
         teacher.setStatus(UserStatus.ACTIVE);
+        teacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
         return teacherService.save(teacher);
     }
 
