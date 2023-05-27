@@ -6,10 +6,14 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Optional;
+
 public interface JpaStudentRepository extends JpaRepository<StudentEntity, Long>, JpaSpecificationExecutor<StudentEntity> {
     @Modifying
     @Query("UPDATE #{#entityName} t SET t.image = ?2 WHERE t.id = ?1")
     byte[] updateImage(Long studentId, byte[] image);
+
+    Optional<StudentEntity> findByUsername(String username);
 
     StudentEntity findByUsernameAndPassword(String username, String password);
 }

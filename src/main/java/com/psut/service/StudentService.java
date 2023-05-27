@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +29,13 @@ public class StudentService {
 
     public Student findById(Long id) {
         StudentEntity studentEntity = validateExistence(id);
+        return mapper.toDomain(studentEntity);
+    }
+
+    public Student findByUsername(String username) {
+        StudentEntity studentEntity = jpaRepository
+                .findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("user.not.found"));
         return mapper.toDomain(studentEntity);
     }
 
