@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collections;
 
@@ -24,6 +25,8 @@ class CreateTeacherUseCaseTest {
     private TeacherValidator validator;
     @Mock
     private TeacherService service;
+    @Mock
+    private PasswordEncoder passwordEncoder;
     @InjectMocks
     private CreateTeacherUseCase useCase;
 
