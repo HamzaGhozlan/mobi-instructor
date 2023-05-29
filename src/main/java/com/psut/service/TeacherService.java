@@ -62,8 +62,9 @@ public class TeacherService {
     }
 
     public String updateDescription(Long teacherId, String description) {
-        validateExistence(teacherId);
-        return jpaRepository.updateDescription(teacherId, description);
+        TeacherEntity teacher = validateExistence(teacherId);
+        teacher.setDescription(description);
+        return update(mapper.toDomain(teacher)).getDescription();
     }
 
     public byte[] findImage(Long teacherId) {
